@@ -1,0 +1,3278 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GW Matura – Themenpools 1–5</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0e0d;
+    --surface: #1a1917;
+    --surface2: #232220;
+    --border: rgba(255,255,255,0.08);
+    --text: #f0ece4;
+    --muted: #8a8680;
+    --t1: #4fc3f7;
+    --t2: #aed581;
+    --t3: #ffb74d;
+    --t4: #7986cb;
+    --t5: #f06292;
+    --t6: #4db6ac;
+    --t7: #9575cd;
+    --t8: #e57373;
+    --t9: #ffd54f;
+    --t10: #81c784;
+    --t11: #f48fb1;
+    --t12: #80cbc4;
+    --t13: #ffe082;
+    --t14: #b39ddb;
+    --t15: #ef9a9a;
+    --t16: #a5d6a7;
+    --accent: #4fc3f7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  header {
+    padding: 3.5rem 2rem 2.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse, rgba(79,195,247,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  header h1 span { color: var(--accent); }
+  .header-sub {
+    margin-top: 0.75rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+
+  /* NAV GRID */
+  .nav-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+    min-width: max-content;
+    margin: 0 auto;
+  }
+  .tab-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--muted);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 0.5rem 0.5rem 0.4rem;
+    cursor: pointer;
+    transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    position: relative;
+    overflow: visible;
+    transform-origin: center bottom;
+    flex-shrink: 0;
+    min-width: 56px;
+    max-width: 80px;
+  }
+  .tab-btn .tab-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--tab-color, var(--accent));
+    opacity: 0.5;
+    transition: opacity 0.18s;
+  }
+  .tab-btn .tab-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    padding: 0 2px;
+  }
+  .tab-btn:hover {
+    background: var(--surface2);
+    border-color: var(--tab-color, var(--accent));
+    color: var(--text);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35), 0 0 0 1px var(--tab-color, var(--accent));
+  }
+  .tab-btn:hover .tab-num { opacity: 1; }
+  .tab-btn.active {
+    background: var(--surface2);
+    border-color: var(--tab-color, var(--accent));
+    border-width: 2px;
+    color: var(--text);
+    transform: translateY(-1px) scale(1.03);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--tab-color, var(--accent)) 40%, transparent),
+                0 4px 12px rgba(0,0,0,0.4);
+  }
+  .tab-btn.active .tab-num { opacity: 1; }
+  .tab-btn.active .tab-label { color: var(--text); }
+
+  /* GLOBAL MODE BAR */
+  .mode-bar-global {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.55rem 1.5rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .mode-bar-global span {
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    flex: 1;
+  }
+  .mode-toggle {
+    display: flex;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .mode-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.35rem 0.85rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.04em;
+  }
+  .mode-btn.active {
+    background: var(--tab-color, var(--accent));
+    color: #0f0e0d;
+  }
+
+  /* SHORT MODE */
+  .detail { transition: opacity 0.2s; }
+  .short-text { display: none; font-size: 0.85rem; color: #c8c4bc; line-height: 1.6; }
+  body.short-mode .detail { display: none !important; }
+  body.short-mode .short-text { display: block !important; }
+  body.short-mode .thinkers { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  body.short-mode .thinker { padding: 0.5rem 0.75rem; }
+  body.short-mode .card { padding: 0.6rem 0.85rem; }
+  body.short-mode .card-title { font-size: 0.85rem; margin-bottom: 0.25rem; }
+  body.short-mode .section { margin-bottom: 0.85rem; }
+  body.short-mode .section-title { margin-bottom: 0.5rem; }
+
+  /* PANELS */
+  .panel { display: none; padding: 1.5rem 2rem; }
+  .panel.active { display: block; animation: fadeSlide 0.22s ease; }
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .panel-inner { max-width: 2000px; margin: 0 auto; }
+
+  /* TOPIC HEADER */
+  .topic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .topic-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    opacity: 0.15;
+    flex-shrink: 0;
+  }
+  .topic-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .topic-title span { display: block; }
+  .topic-keywords {
+    margin-top: 0.6rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 300;
+    letter-spacing: 0.03em;
+  }
+
+  /* COLUMNS LAYOUT */
+  .sections-grid { columns: 1; column-gap: 1.5rem; }
+  @media (min-width: 900px) { .sections-grid { columns: 2; } }
+  @media (min-width: 1400px) { .sections-grid { columns: 3; } }
+  @media (min-width: 1900px) { .sections-grid { columns: 4; } }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 1.5rem;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    padding: 0.85rem 0.9rem 0.1rem;
+    background: rgba(255,255,255,0.015);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--section-color, var(--accent));
+    border-radius: 0 0 6px 6px;
+  }
+  .section-title {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--section-color, var(--accent));
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--section-color, var(--accent));
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    transition: border-left-color 0.2s, background 0.2s;
+    position: relative;
+  }
+  .card:hover { background: var(--surface2); }
+  .card-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: var(--card-color, var(--text));
+  }
+  .card p, .card li {
+    font-size: 0.88rem;
+    color: #c8c4bc;
+    line-height: 1.65;
+  }
+  .card ul { padding-left: 1.2rem; }
+  .card li { margin-bottom: 0.2rem; }
+
+  /* THINKER CARDS */
+  .thinkers {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .thinker {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    break-inside: avoid;
+    position: relative;
+  }
+  .thinker-name {
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin-bottom: 0.3rem;
+  }
+  .thinker-years {
+    font-size: 0.72rem;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .thinker p {
+    font-size: 0.82rem;
+    color: #b0aca4;
+    line-height: 1.55;
+  }
+
+  /* PILLS */
+  .pill {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.7rem;
+    border-radius: 20px;
+    margin: 0.2rem 0.2rem 0.2rem 0;
+    background: rgba(255,255,255,0.06);
+    color: #c8c4bc;
+    border: 1px solid var(--border);
+  }
+
+  /* COMPARE TABLE */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.83rem;
+    margin-bottom: 1rem;
+  }
+  .compare-table th {
+    background: var(--surface2);
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.6rem 0.9rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-table td {
+    padding: 0.65rem 0.9rem;
+    color: #c8c4bc;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+    position: relative;
+  }
+  .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* HIGHLIGHT BOX */
+  .highlight {
+    border-left: 3px solid var(--hl-color, var(--accent));
+    background: rgba(255,255,255,0.03);
+    padding: 0.85rem 1.1rem;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 0.75rem;
+    font-size: 0.88rem;
+    color: #c8c4bc;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    position: relative;
+  }
+  .highlight strong { color: var(--text); }
+
+  /* GRID 2 */
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } .thinkers { grid-template-columns: 1fr; } }
+
+  /* ═══ RESPONSIVE ═══ */
+
+  /* Tablet landscape / small desktop (≤1100px) */
+  @media (max-width: 1100px) {
+    .panel { padding: 1.2rem 1.4rem; }
+  }
+
+  /* iPad / Tablet portrait (≤900px) */
+  @media (max-width: 900px) {
+    header { padding: 2.5rem 1.2rem 2rem; }
+    .panel { padding: 1rem 1.1rem; }
+    .sections-grid { columns: 1 !important; }
+    .topic-num { font-size: 2.2rem; }
+    .topic-header { gap: 1rem; margin-bottom: 1.2rem; }
+
+    /* Tables: scroll wrapper */
+    .compare-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .compare-table { min-width: 480px; }
+
+    /* Mode bar: compact */
+    .mode-bar-global { padding: 0.4rem 1rem; gap: 0.6rem; }
+    .mode-bar-global > span { display: none; }
+
+    /* Rating dots on cards: bigger touch targets */
+    .rating-dot { width: 13px; height: 13px; }
+    .done-btn { width: 26px; height: 26px; font-size: 12px; }
+    .irrelevant-btn { width: 24px; height: 24px; }
+  }
+
+  /* Phone landscape + small tablet (≤768px) */
+  @media (max-width: 768px) {
+    .nav-wrapper { padding: 0.5rem 0.6rem; }
+    .tab-btn { min-width: 48px; max-width: 68px; padding: 0.45rem 0.35rem 0.35rem; }
+    .tab-btn .tab-label { font-size: 0.55rem; }
+    .tab-btn .tab-num { font-size: 0.9rem; }
+    .grid2 { grid-template-columns: 1fr; }
+    .thinkers { grid-template-columns: 1fr 1fr; }
+    .section { padding: 0.7rem 0.75rem 0.1rem; }
+    .card { padding: 0.85rem 1rem; }
+  }
+
+  /* Phone portrait (≤480px) */
+  @media (max-width: 480px) {
+    header h1 { font-size: 1.7rem; }
+    .panel { padding: 0.8rem 0.75rem; }
+    .topic-header { flex-direction: column; gap: 0.5rem; }
+    .topic-num { font-size: 1.8rem; opacity: 0.1; }
+    .topic-title { font-size: 1.2rem; }
+    .thinkers { grid-template-columns: 1fr; }
+    .compare-table th, .compare-table td { padding: 0.5rem 0.6rem; font-size: 0.78rem; }
+    .pill { font-size: 0.7rem; padding: 0.2rem 0.55rem; }
+    .mode-btn { padding: 0.3rem 0.6rem; font-size: 0.7rem; }
+    .score-overview-btn { font-size: 0.7rem; padding: 0.3rem 0.6rem; }
+    .section-title { font-size: 0.62rem; letter-spacing: 0.12em; }
+    .card-title { font-size: 0.88rem; }
+    .card p, .card li { font-size: 0.83rem; }
+    /* Fixed counters: smaller on phone */
+    .done-counter { bottom: 0.7rem; right: 0.7rem; font-size: 0.72rem; }
+    .rating-legend { bottom: 0.7rem; left: 0.7rem; font-size: 0.7rem; }
+    /* Overview grid: single column on tiny screens */
+    .overview-grid { grid-template-columns: 1fr; }
+    /* Score overview panel */
+    .score-overview-panel { width: calc(100vw - 2rem); left: 1rem; right: 1rem; max-width: none; bottom: 1rem; max-height: 70vh; }
+  }
+
+  /* COLOR THEMES */
+  .t1-theme { --tab-color: var(--t1); --section-color: var(--t1); --card-color: var(--t1); --hl-color: var(--t1); }
+  .t2-theme { --tab-color: var(--t2); --section-color: var(--t2); --card-color: var(--t2); --hl-color: var(--t2); }
+  .t3-theme { --tab-color: var(--t3); --section-color: var(--t3); --card-color: var(--t3); --hl-color: var(--t3); }
+  .t4-theme { --tab-color: var(--t4); --section-color: var(--t4); --card-color: var(--t4); --hl-color: var(--t4); }
+  .t5-theme { --tab-color: var(--t5); --section-color: var(--t5); --card-color: var(--t5); --hl-color: var(--t5); }
+  .t6-theme { --tab-color: var(--t6); --section-color: var(--t6); --card-color: var(--t6); --hl-color: var(--t6); }
+  .t7-theme { --tab-color: var(--t7); --section-color: var(--t7); --card-color: var(--t7); --hl-color: var(--t7); }
+  .t8-theme { --tab-color: var(--t8); --section-color: var(--t8); --card-color: var(--t8); --hl-color: var(--t8); }
+  .t9-theme { --tab-color: var(--t9); --section-color: var(--t9); --card-color: var(--t9); --hl-color: var(--t9); }
+  .t10-theme { --tab-color: var(--t10); --section-color: var(--t10); --card-color: var(--t10); --hl-color: var(--t10); }
+  .t11-theme { --tab-color: var(--t11); --section-color: var(--t11); --card-color: var(--t11); --hl-color: var(--t11); }
+  .t12-theme { --tab-color: var(--t12); --section-color: var(--t12); --card-color: var(--t12); --hl-color: var(--t12); }
+  .t13-theme { --tab-color: var(--t13); --section-color: var(--t13); --card-color: var(--t13); --hl-color: var(--t13); }
+  .t14-theme { --tab-color: var(--t14); --section-color: var(--t14); --card-color: var(--t14); --hl-color: var(--t14); }
+  .t15-theme { --tab-color: var(--t15); --section-color: var(--t15); --card-color: var(--t15); --hl-color: var(--t15); }
+  .t16-theme { --tab-color: var(--t16); --section-color: var(--t16); --card-color: var(--t16); --hl-color: var(--t16); }
+
+  /* DONE SYSTEM */
+  .done-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.2);
+    background: transparent;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    color: transparent;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    z-index: 10;
+  }
+  .done-btn:hover { border-color: rgba(255,255,255,0.5); color: rgba(255,255,255,0.4); }
+  .done-btn::after { content: '✓'; }
+  .card.is-done, .highlight.is-done, .thinker.is-done {
+    opacity: 0.25; filter: grayscale(0.6);
+    transition: opacity 0.3s, filter 0.3s;
+  }
+  .card.is-done:hover, .highlight.is-done:hover, .thinker.is-done:hover { opacity: 0.55; filter: grayscale(0.2); }
+  .is-done .done-btn { border-color: #4caf50; color: #4caf50; }
+  .is-done .done-btn:hover { border-color: #ef5350; color: #ef5350; }
+
+  /* COUNTER */
+  .done-counter {
+    position: fixed; bottom: 1.2rem; right: 1.2rem;
+    background: rgba(30,30,30,0.9);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.78rem; color: #8a8680;
+    z-index: 1000; pointer-events: none; display: none;
+  }
+  .done-counter.visible { display: block; }
+  .done-counter span { color: #4caf50; font-weight: 600; }
+
+  /* RATING SYSTEM */
+  .rating-bar {
+    display: flex; gap: 3px;
+    position: absolute; bottom: 0.5rem; right: 0.5rem;
+    z-index: 10;
+  }
+  .rating-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.15);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Bigger touch targets on touch screens */
+  @media (hover: none) {
+    .rating-dot { width: 14px; height: 14px; }
+    .rating-bar { gap: 4px; bottom: 0.6rem; right: 0.6rem; }
+    .card { padding-bottom: 2.4rem; }
+    .highlight { padding-bottom: 2.2rem; }
+    .thinker { padding-bottom: 2.2rem; }
+  }
+  .rating-dot:hover { transform: scale(1.3); border-color: rgba(255,255,255,0.5); }
+  .rating-dot[data-val="1"] { --dot-color: #ef5350; }
+  .rating-dot[data-val="2"] { --dot-color: #ff9800; }
+  .rating-dot[data-val="3"] { --dot-color: #ffeb3b; }
+  .rating-dot[data-val="4"] { --dot-color: #8bc34a; }
+  .rating-dot[data-val="5"] { --dot-color: #4caf50; }
+  .rating-dot.active { background: var(--dot-color); border-color: var(--dot-color); box-shadow: 0 0 5px var(--dot-color); }
+  .card[data-rating="1"] { border-left: 3px solid #ef5350; }
+  .card[data-rating="2"] { border-left: 3px solid #ff9800; }
+  .card[data-rating="3"] { border-left: 3px solid #ffeb3b; }
+  .card[data-rating="4"] { border-left: 3px solid #8bc34a; }
+  .card[data-rating="5"] { border-left: 3px solid #4caf50; }
+  .thinker[data-rating="1"] { border-left: 3px solid #ef5350; }
+  .thinker[data-rating="2"] { border-left: 3px solid #ff9800; }
+  .thinker[data-rating="3"] { border-left: 3px solid #ffeb3b; }
+  .thinker[data-rating="4"] { border-left: 3px solid #8bc34a; }
+  .thinker[data-rating="5"] { border-left: 3px solid #4caf50; }
+  .highlight[data-rating="1"] { border-left: 3px solid #ef5350 !important; }
+  .highlight[data-rating="2"] { border-left: 3px solid #ff9800 !important; }
+  .highlight[data-rating="3"] { border-left: 3px solid #ffeb3b !important; }
+  .highlight[data-rating="4"] { border-left: 3px solid #8bc34a !important; }
+  .highlight[data-rating="5"] { border-left: 3px solid #4caf50 !important; }
+
+  /* RATING LEGEND */
+  .rating-legend {
+    position: fixed; bottom: 1.2rem; left: 1.2rem;
+    background: rgba(30,30,30,0.92);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.75rem; color: #8a8680;
+    z-index: 1000; pointer-events: none; display: none;
+    gap: 0.7rem; flex-direction: column;
+  }
+  .rating-legend.visible { display: flex; }
+  .rating-legend-row { display: flex; align-items: center; gap: 0.4rem; }
+  .rating-legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+  /* TAB SCORE */
+  .tab-score {
+    position: absolute; top: -7px; right: -5px;
+    font-size: 14px; line-height: 1;
+    pointer-events: none;
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.7));
+  }
+  @keyframes dangerShake { 0%,100%{transform:rotate(0)} 15%{transform:rotate(-15deg) scale(1.2)} 30%{transform:rotate(14deg) scale(1.2)} 45%{transform:rotate(-10deg)} 60%{transform:rotate(9deg)} 75%{transform:rotate(-5deg)} }
+  .score-danger { animation: dangerShake 1.4s ease-in-out infinite; }
+  @keyframes warningWobble { 0%,100%{transform:rotate(0)} 25%{transform:rotate(-8deg)} 75%{transform:rotate(8deg)} }
+  .score-warning { animation: warningWobble 2s ease-in-out infinite; }
+  @keyframes okPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.25)} }
+  .score-ok { animation: okPulse 2.5s ease-in-out infinite; }
+  @keyframes goodBounce { 0%,100%{transform:translateY(0)} 40%{transform:translateY(-4px)} 60%{transform:translateY(-2px)} }
+  .score-good { animation: goodBounce 2s ease-in-out infinite; }
+  @keyframes perfectSpin { 0%{transform:rotate(0) scale(1)} 50%{transform:rotate(20deg) scale(1.2)} 100%{transform:rotate(0) scale(1)} }
+  .score-perfect { animation: perfectSpin 2s ease-in-out infinite; }
+
+  /* SCORE OVERVIEW */
+  .score-overview-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--muted);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.75rem; font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex; align-items: center; gap: 0.4rem;
+    white-space: nowrap;
+  }
+  .score-overview-btn:hover { border-color: var(--accent); color: var(--text); }
+  .score-overview-panel {
+    display: none; position: fixed;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    z-index: 2000; min-width: 300px; max-width: 480px; width: 90vw;
+    max-height: 80vh; overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    animation: panelIn 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes panelIn { from{transform:translate(-50%,-52%) scale(0.92);opacity:0} to{transform:translate(-50%,-50%) scale(1);opacity:1} }
+  .score-overview-panel.open { display: block; }
+  .score-overview-backdrop {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5); z-index: 1999;
+  }
+  .score-overview-backdrop.open { display: block; }
+  .score-overview-panel h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--text);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .score-overview-panel h3 button { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1.1rem; line-height: 1; padding: 0; }
+  .score-overview-panel h3 button:hover { color: var(--text); }
+  .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .overview-item { background: var(--surface2); border-radius: 6px; padding: 0.5rem 0.7rem; display: flex; align-items: center; gap: 0.6rem; border-left: 3px solid transparent; }
+  .overview-item .ov-emoji { font-size: 1.2rem; }
+  .overview-item .ov-name { font-size: 0.75rem; color: var(--muted); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .overview-item .ov-bar-wrap { width: 40px; height: 5px; background: rgba(255,255,255,0.07); border-radius: 3px; overflow: hidden; }
+  .overview-item .ov-bar { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
+  .overview-item .ov-score { font-size: 0.7rem; font-weight: 700; color: var(--text); min-width: 20px; text-align: right; }
+
+  /* IRRELEVANT */
+  .irrelevant-btn {
+    position: absolute; top: 0.5rem; right: 2rem;
+    width: 20px; height: 20px;
+    border-radius: 4px;
+    border: 1.5px solid rgba(255,255,255,0.12);
+    background: transparent;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 9px; color: transparent;
+    transition: all 0.2s ease; z-index: 10; line-height: 1; padding: 0;
+  }
+  .irrelevant-btn::after { content: '—'; }
+  .irrelevant-btn:hover { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.05); }
+  .is-irrelevant .irrelevant-btn { border-color: #555; color: #555; }
+  .card.is-irrelevant, .highlight.is-irrelevant, .thinker.is-irrelevant {
+    opacity: 0.18; filter: grayscale(1) brightness(0.7);
+    transition: opacity 0.3s, filter 0.3s;
+  }
+  .card.is-irrelevant:hover, .highlight.is-irrelevant:hover, .thinker.is-irrelevant:hover { opacity: 0.42; filter: grayscale(0.5) brightness(0.85); }
+  .ov-irrelevant { opacity: 0.4; }
+
+  /* TABLE ROW CONTROLS — always visible on touch, hover on desktop */
+  .compare-table { overflow: visible; }
+  .compare-table td:last-child { padding-right: 2.5rem; }
+  .tr-controls {
+    display: flex; align-items: center; gap: 3px;
+    position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+    opacity: 0.35; transition: opacity 0.15s;
+  }
+  .compare-table tr:hover .tr-controls { opacity: 1; }
+  /* On touch devices: always show */
+  @media (hover: none) {
+    .tr-controls { opacity: 0.7; }
+  }
+  .tr-rating-dot {
+    width: 11px; height: 11px; border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.15);
+    background: transparent; cursor: pointer; transition: all 0.15s; padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  @media (hover: none) {
+    .tr-rating-dot { width: 14px; height: 14px; }
+  }
+  .tr-rating-dot:hover { transform: scale(1.35); border-color: rgba(255,255,255,0.5); }
+  .tr-rating-dot[data-val="1"] { --dot-color: #ef5350; }
+  .tr-rating-dot[data-val="2"] { --dot-color: #ff9800; }
+  .tr-rating-dot[data-val="3"] { --dot-color: #ffeb3b; }
+  .tr-rating-dot[data-val="4"] { --dot-color: #8bc34a; }
+  .tr-rating-dot[data-val="5"] { --dot-color: #4caf50; }
+  .tr-rating-dot.active { background: var(--dot-color); border-color: var(--dot-color); box-shadow: 0 0 4px var(--dot-color); }
+  .tr-done-btn, .tr-irr-btn {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.18);
+    background: transparent; cursor: pointer; font-size: 9px; color: transparent;
+    transition: all 0.15s; display: flex; align-items: center; justify-content: center;
+    padding: 0; line-height: 1; margin-left: 2px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  @media (hover: none) {
+    .tr-done-btn, .tr-irr-btn { width: 22px; height: 22px; font-size: 10px; }
+  }
+  .tr-done-btn::after { content: '✓'; }
+  .tr-irr-btn::after { content: '—'; }
+  .tr-done-btn:hover, .tr-irr-btn:hover { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.4); }
+  tr.is-done .tr-done-btn { border-color: #4caf50; color: #4caf50; }
+  tr.is-done .tr-done-btn:hover { border-color: #ef5350; color: #ef5350; }
+  tr.is-irrelevant .tr-irr-btn { border-color: #555; color: #555; }
+  tr.is-done td { opacity: 0.28; filter: grayscale(0.5); }
+  tr.is-done:hover td { opacity: 0.55; }
+  tr.is-done .tr-controls { opacity: 1 !important; filter: none !important; }
+  tr.is-irrelevant td { opacity: 0.3; filter: grayscale(1) brightness(0.7); font-style: italic; font-weight: 300; color: #555 !important; }
+  tr.is-irrelevant:hover td { opacity: 0.55; }
+  tr.is-irrelevant .tr-controls { opacity: 1 !important; filter: none !important; }
+  tr[data-rating="1"] td:first-child { border-left: 3px solid #ef5350; }
+  tr[data-rating="2"] td:first-child { border-left: 3px solid #ff9800; }
+  tr[data-rating="3"] td:first-child { border-left: 3px solid #ffeb3b; }
+  tr[data-rating="4"] td:first-child { border-left: 3px solid #8bc34a; }
+  tr[data-rating="5"] td:first-child { border-left: 3px solid #4caf50; }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-label">Mündliche Matura · GW</div>
+  <h1>Geographie &amp; <span>Wirtschaft</span></h1>
+  <p class="header-sub">Themenpools 1–16 · Klasse 8 · Matura Vorbereitung</p>
+</header>
+
+<nav class="nav-wrapper">
+  <div class="nav-grid">
+    <button class="tab-btn active t1-theme" onclick="showTab('t1')" style="--tab-color:#4fc3f7"><span class="tab-num">01</span><span class="tab-label">Landschaftsöko.</span></button>
+    <button class="tab-btn t2-theme" onclick="showTab('t2')" style="--tab-color:#aed581"><span class="tab-num">02</span><span class="tab-label">Bevölkerung</span></button>
+    <button class="tab-btn t3-theme" onclick="showTab('t3')" style="--tab-color:#ffb74d"><span class="tab-num">03</span><span class="tab-label">Städte</span></button>
+    <button class="tab-btn t4-theme" onclick="showTab('t4')" style="--tab-color:#7986cb"><span class="tab-num">04</span><span class="tab-label">EU</span></button>
+    <button class="tab-btn t5-theme" onclick="showTab('t5')" style="--tab-color:#f06292"><span class="tab-num">05</span><span class="tab-label">Produktionsgebiete</span></button>
+    <button class="tab-btn t6-theme" onclick="showTab('t6')" style="--tab-color:#4db6ac"><span class="tab-num">06</span><span class="tab-label">Österreich EU</span></button>
+    <button class="tab-btn t7-theme" onclick="showTab('t7')" style="--tab-color:#9575cd"><span class="tab-num">07</span><span class="tab-label">Natur Österreich</span></button>
+    <button class="tab-btn t8-theme" onclick="showTab('t8')" style="--tab-color:#e57373"><span class="tab-num">08</span><span class="tab-label">Sozialpolitik</span></button>
+    <button class="tab-btn t9-theme" onclick="showTab('t9')" style="--tab-color:#ffd54f"><span class="tab-num">09</span><span class="tab-label">Wirtschaftsstandort</span></button>
+    <button class="tab-btn t10-theme" onclick="showTab('t10')" style="--tab-color:#81c784"><span class="tab-num">10</span><span class="tab-label">Grundlagen</span></button>
+    <button class="tab-btn t11-theme" onclick="showTab('t11')" style="--tab-color:#f48fb1"><span class="tab-num">11</span><span class="tab-label">Geld & Geldanlagen</span></button>
+    <button class="tab-btn t12-theme" onclick="showTab('t12')" style="--tab-color:#80cbc4"><span class="tab-num">12</span><span class="tab-label">Polit. & ökon. Systeme</span></button>
+    <button class="tab-btn t13-theme" onclick="showTab('t13')" style="--tab-color:#ffe082"><span class="tab-num">13</span><span class="tab-label">Wasser & SDG6</span></button>
+    <button class="tab-btn t14-theme" onclick="showTab('t14')" style="--tab-color:#b39ddb"><span class="tab-num">14</span><span class="tab-label">Globalisierung</span></button>
+    <button class="tab-btn t15-theme" onclick="showTab('t15')" style="--tab-color:#ef9a9a"><span class="tab-num">15</span><span class="tab-label">Landschaftsentwicklung</span></button>
+    <button class="tab-btn t16-theme" onclick="showTab('t16')" style="--tab-color:#a5d6a7"><span class="tab-num">16</span><span class="tab-label">Glob. ökol. Probleme</span></button>
+  </div>
+</nav>
+
+<div class="mode-bar-global">
+  <span>Anzeigemodus</span>
+  <div class="mode-toggle">
+    <button class="mode-btn active" data-mode="full" onclick="setMode('full')">📖 Vollständig</button>
+    <button class="mode-btn" data-mode="short" onclick="setMode('short')">⚡ Kompakt</button>
+  </div>
+  <button class="score-overview-btn" onclick="openScoreOverview()">📊 Wissensstand</button>
+</div>
+
+<!-- ═══════════════ T1: LANDSCHAFTSÖKOLOGISCHE ZONEN ═══════════════ -->
+<div id="t1" class="panel active t1-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t1)">01</div>
+    <div>
+      <div class="topic-title" style="color:var(--t1)">Landschaftsökologische<br><span>Zonen der Erde</span></div>
+      <div class="topic-keywords">Klimazonen · Vegetation · Geo- &amp; Humanfaktoren · Klimadiagramme · Tropen · Subtropen · Gemäßigte Zone · Kalte Zone</div>
+    </div>
+  </div>
+
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Grundbegriffe</div>
+    <div class="card">
+      <div class="card-title">Landschaftsökologische Zonen</div>
+      <p class="short-text">Große Gebiete mit ähnlichen Eigenschaften: Klima, Vegetation, Böden, Nutzung. Entstehen durch unterschiedliche Sonneneinstrahlung → Äquator = stärker, Pole = schwächer.</p>
+      <div class="detail">
+        <p>Landschaftsökologische Zonen sind große Gebiete der Erde mit ähnlichen natürlichen Eigenschaften. Dazu gehören vor allem <strong>Klima, Vegetation, Böden</strong> und die Nutzung durch den Menschen. Die verschiedenen Zonen entstehen, weil die Sonne die Erde unterschiedlich stark erwärmt — in Äquatornähe stärker, an den Polen schwächer.</p>
+        <ul>
+          <li>Tropen</li>
+          <li>Subtropen</li>
+          <li>Gemäßigte Zone</li>
+          <li>Kalte Zone</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Geofaktoren</div>
+      <p class="short-text">Natürliche Einflüsse: Klima, Wasser, Boden, Vegetation, Relief, Gestein. Alle hängen zusammen (Klima → Vegetation → Boden).</p>
+      <div class="detail">
+        <p>Geofaktoren sind <strong>natürliche Einflüsse</strong> auf die Umwelt: Klima, Wasser, Boden, Vegetation, Relief (Gebirge, Täler, Ebenen) und Gestein. Alle diese Faktoren hängen zusammen — das Klima beeinflusst z.B. die Vegetation, die Vegetation wiederum wirkt auf den Boden zurück.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Humanfaktoren</div>
+      <p class="short-text">Menschliche Einflüsse: Landwirtschaft, Industrie, Städtebau, Straßenbau, Tourismus, Rodung. Natürliche Landschaften werden dadurch oft stark verändert oder zerstört.</p>
+      <div class="detail">
+        <p>Humanfaktoren sind <strong>Einflüsse des Menschen</strong> auf die Natur. Der Mensch verändert Landschaften durch Landwirtschaft, Industrie, Städtebau, Straßenbau, Tourismus und Rodung von Wäldern. Dadurch werden natürliche Landschaften oft stark verändert oder zerstört.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Klima- &amp; Vegetationszonen im Überblick</div>
+    <table class="compare-table">
+      <thead><tr><th>Zone</th><th>Klima</th><th>Vegetation</th><th>Besonderheit</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tropen</strong></td><td>Heiß, feucht (25°C+)</td><td>Regenwald, Savanne</td><td>Maximale Artenvielfalt</td></tr>
+        <tr><td><strong>Subtropen</strong></td><td>Heiße trockene Sommer, milde Winter</td><td>Hartlaubgewächse, Steppe</td><td>Mittelmeerraum, Wüsten</td></tr>
+        <tr><td><strong>Gemäßigte Zone</strong></td><td>4 Jahreszeiten</td><td>Laub- &amp; Mischwälder</td><td>Intensivste Besiedlung</td></tr>
+        <tr><td><strong>Kalte Zone</strong></td><td>Sehr kalt, lange Winter</td><td>Moose, Flechten, Gräser</td><td>Permafrost, Tundra</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight">
+      <strong>Merke:</strong> Klima- und Vegetationszonen hängen eng zusammen. Heiß &amp; feucht → Regenwald · Trocken → Wüste/Steppe · Kühl → Nadelwald · Sehr kalt → Tundra
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Die Tropen</div>
+    <div class="card">
+      <div class="card-title">Lage &amp; Klima</div>
+      <p class="short-text">Rund um den Äquator zwischen nördlichem und südlichem Wendekreis. Ganzjährig über 25°C, sehr viel Regen. Feuchtwarmes Klima.</p>
+      <div class="detail">
+        <p>Die Tropen liegen rund um den Äquator <strong>zwischen dem nördlichen und südlichen Wendekreis</strong>. Temperaturen meist über 25°C das ganze Jahr, sehr viel Regen → feuchtwarmes Klima. In Regionen mit Trockenzeiten entstehen Savannen.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Eingriffe des Menschen: Abholzung</div>
+      <p class="short-text">Rodung für Viehzucht, Plantagen, Straßen, Bergbau. Folge: Verlust von Tier- &amp; Pflanzenarten, CO₂-Freisetzung.</p>
+      <div class="detail">
+        <p>Die Tropen werden stark vom Menschen genutzt. Problematisch: Wälder werden gerodet für <strong>Viehzucht, Plantagen, Straßen, Bergbau</strong>. Folgen: Viele Tier- und Pflanzenarten gehen verloren, große Mengen CO₂ werden freigesetzt.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Fallbeispiel: Palmöl</div>
+      <p class="short-text">Ölpalmen = hohe Erträge. Palmöl in Lebensmitteln, Kosmetik, Waschmitteln. Problem: Für Plantagen werden Regenwälder abgeholzt → Orang-Utans verlieren Lebensraum.</p>
+      <div class="detail">
+        <p>Ölpalmen liefern sehr hohe Erträge. Palmöl steckt in Lebensmitteln, Kosmetik und Waschmitteln. Der Anbau bringt jedoch große Umweltprobleme: Für neue Plantagen werden oft <strong>Regenwälder abgeholzt</strong>. Dadurch verlieren Tiere wie Orang-Utans ihren Lebensraum.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Die Subtropen</div>
+    <div class="card">
+      <div class="card-title">Klima &amp; Vegetation</div>
+      <p class="short-text">Zwischen Tropen und gemäßigter Zone. Sommer: sehr heiß &amp; trocken. Winter: mild. Typisch: Hartlaubgewächse, Sträucher, mediterrane Vegetation.</p>
+      <div class="detail">
+        <p>Die Subtropen liegen zwischen den Tropen und der gemäßigten Zone. Sommer: sehr heiß und trocken; Winter: mild, wenig Niederschlag. Typisch: <strong>Hartlaubgewächse, Sträucher, mediterrane Vegetation</strong> (Mittelmeerraum). Gut für Landwirtschaft: Wein, Oliven, Zitrusfrüchte, Baumwolle.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Fallbeispiel: Baumwolle</div>
+      <p class="short-text">Baumwolle braucht viel Wärme → gut in Subtropen. Probleme: hoher Wasserverbrauch, Bodenversalzung, Pestizideinsatz.</p>
+      <div class="detail">
+        <p>Baumwolle wächst gut in den Subtropen, braucht aber <strong>viel Wärme und Wasser</strong>. Umweltprobleme: hoher Wasserverbrauch, Bodenversalzung durch Bewässerung, intensiver Einsatz von Pestiziden.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Gemäßigte Zone &amp; Kalte Zone</div>
+    <div class="card">
+      <div class="card-title">Gemäßigte Zone</div>
+      <p class="short-text">4 Jahreszeiten. Vegetation: Laubwälder, Mischwälder, Wiesen, Agrarflächen. Stark vom Menschen geprägt: viele Städte, Industrie. Umweltprobleme: Luftverschmutzung, Bodenversiegelung, Klimawandel.</p>
+      <div class="detail">
+        <p>Vier Jahreszeiten: Frühling, Sommer, Herbst, Winter. Vegetation: Laubwälder, Mischwälder, Wiesen, landwirtschaftliche Flächen. <strong>Besonders stark vom Menschen geprägt</strong> — viele große Städte und Industriegebiete, intensive Landwirtschaft. Probleme: Luftverschmutzung, Bodenversiegelung, Abgase, Klimawandel.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Kalte Zone</div>
+      <p class="short-text">Nähe der Pole. Sehr niedrige Temperaturen, lange Winter, kurze kühle Sommer. Moose, Flechten, Gräser. Klimawandel: Eis schmilzt, Permafrost taut auf.</p>
+      <div class="detail">
+        <p>Sehr niedrige Temperaturen, lange Winter, kurze kühle Sommer, wenig Niederschlag. Kaum Pflanzen: <strong>Moose, Flechten, Gräser</strong>. Der Klimawandel wirkt sich besonders stark aus — das Eis an den Polen schmilzt und der Permafrostboden taut langsam auf.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Klimadiagramme lesen</div>
+    <div class="card">
+      <div class="card-title">Aufbau &amp; Interpretation</div>
+      <p class="short-text">Temperaturkurve (°C, links) + Niederschlagsbalken (mm, rechts). Regel: Wenn Temp-Kurve über Niederschlagsbalken → Trockenzeit. Wenn Niederschlagsbalken über Temp-Kurve → Regenzeit (humid).</p>
+      <div class="detail">
+        <p>Ein Klimadiagramm zeigt das Klima eines Ortes: <strong>Temperaturkurve</strong> (°C, linke Achse) + <strong>Niederschlagsbalken</strong> (mm, rechte Achse). Interpretation:</p>
+        <ul>
+          <li>Ganzjährig hohe Temp. &amp; viel Regen → <strong>Tropen</strong></li>
+          <li>Heiße, trockene Sommer → <strong>Subtropen</strong></li>
+          <li>Kalte Winter, warme Sommer → <strong>Gemäßigte Zone</strong></li>
+          <li>Sehr niedrige Temperaturen → <strong>Kalte Zone</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="highlight">
+      <strong>Beispiel Salechard/Russland:</strong> Jahresmittel −6,7°C, Niederschlag 464mm. Temperaturen fast das ganze Jahr sehr niedrig (Winter bis −25°C), wärmster Monat Juli mit ~13°C. → Subpolare Kalte Zone.
+    </div>
+    <div class="highlight">
+      <strong>Beispiel Wien:</strong> Jahresmitteltemp. ~10,6°C, Niederschlag ~651mm. Temperaturen steigen im Sommer auf ~20°C, fallen im Winter leicht unter 0°C. → Gemäßigte Zone (ozeanisch beeinflusst).
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">Landschaftsökologische Zone</span>
+      <span class="pill">Geofaktoren</span>
+      <span class="pill">Humanfaktoren</span>
+      <span class="pill">Klimadiagramm</span>
+      <span class="pill">Tropischer Regenwald</span>
+      <span class="pill">Savanne</span>
+      <span class="pill">Mediterrane Vegetation</span>
+      <span class="pill">Permafrost</span>
+      <span class="pill">Palmöl</span>
+      <span class="pill">Baumwolle</span>
+      <span class="pill">Abholzung</span>
+      <span class="pill">Tundra</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ T2: BEVÖLKERUNG & GESELLSCHAFT ═══════════════ -->
+<div id="t2" class="panel t2-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t2)">02</div>
+    <div>
+      <div class="topic-title" style="color:var(--t2)">Bevölkerung &amp;<br><span>Gesellschaft</span></div>
+      <div class="topic-keywords">Demografischer Übergang · Bevölkerungspyramide · Migration · Push- &amp; Pull-Faktoren · China</div>
+    </div>
+  </div>
+
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Demografischer Übergang</div>
+    <div class="card">
+      <div class="card-title">Definition &amp; Überblick</div>
+      <p class="short-text">Modell beschreibt Bevölkerungsentwicklung im Laufe von wirtschaftl./gesellschaftl. Entwicklung. Zusammenhang: Geburtenrate, Sterberate, Bevölkerungswachstum. 5 Phasen.</p>
+      <div class="detail">
+        <p>Das Modell des demografischen Übergangs beschreibt, wie sich die <strong>Bevölkerungsentwicklung</strong> eines Landes im Laufe der wirtschaftlichen und gesellschaftlichen Entwicklung verändert. Es zeigt den Zusammenhang zwischen Geburtenrate, Sterberate und Bevölkerungswachstum.</p>
+      </div>
+    </div>
+    <table class="compare-table">
+      <thead><tr><th>Phase</th><th>Geburten</th><th>Sterberate</th><th>Wachstum</th><th>Gründe</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1</strong> Traditionell</td><td>Hoch</td><td>Hoch</td><td>Kaum</td><td>Schlechte Medizin, Hunger, Krankheiten</td></tr>
+        <tr><td><strong>2</strong> Frühe Übergang</td><td>Hoch</td><td>Sinkt stark</td><td>Schnell</td><td>Bessere Hygiene, Medizin, Ernährung</td></tr>
+        <tr><td><strong>3</strong> Späte Übergang</td><td>Sinkt</td><td>Niedrig</td><td>Verlangsamt</td><td>Bildung, Verhütung, Urbanisierung</td></tr>
+        <tr><td><strong>4</strong> Modern</td><td>Niedrig</td><td>Niedrig</td><td>Stabil</td><td>Frauen arbeiten mehr</td></tr>
+        <tr><td><strong>5</strong> Schrumpfend</td><td>&lt; Sterberate</td><td>Steigt</td><td>Negativ</td><td>Überalterung (z.B. Deutschland, Japan)</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight">
+      <strong>Überbevölkerung:</strong> Missverhältnis zwischen Ressourcen und Verbrauchern. Betrifft Länder wie Indien, Brasilien, Nigeria — Phase 3 und Folgen werden übersprungen.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Bevölkerungspyramiden</div>
+    <div class="card">
+      <div class="card-title">Pyramidenform</div>
+      <p class="short-text">Breite Basis (viele Junge), schmale Spitze. Hohe Geburtenrate, wenige Alte, hohe Lebenserwartung. Typisch für Entwicklungsländer (Phase 2–3).</p>
+      <div class="detail"><p><strong>Breite Basis, schmale Spitze.</strong> Hohe Geburtenrate, wenige alte Menschen, hohe Lebenserwartung. Typisch für Entwicklungs-/Schwellenländer.</p></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Bienenkorbform</div>
+      <p class="short-text">Konstante Geburtenrate, konstante Sterberate, hohe Lebenserwartung. Stabile Bevölkerung (Phase 4).</p>
+      <div class="detail"><p>Konstante Geburten- und Sterberate, hohe Lebenserwartung. Stabile, gleichmäßig verteilte Altersstruktur.</p></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Pilzform / Urnenform</div>
+      <p class="short-text">Hoher Anteil 70+ Jährige, Geburtenrate sinkt. Typisch für Phase 5 (Österreich, Deutschland). Überalterung!</p>
+      <div class="detail"><p><strong>Pilzform:</strong> Hoher Anteil an 70+ Jährigen, Geburtenrate sinkt von Jahr zu Jahr. Typisch für schrumpfende Bevölkerung (Phase 5). <strong>Urnenform:</strong> Hoher Anteil 45–70, niedrige Sterberate, niedrige Geburtenraten der letzten Jahre.</p></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Pagodenform</div>
+      <p class="short-text">Hohe Geburtenrate, konstante Sterberate, wenige Alte, keine lange Lebensspanne. Sieht wie ein pagodenstufiger Turm aus.</p>
+      <div class="detail"><p>Hohe Geburtenrate, konstante Sterberate, wenige alte Menschen, keine lange Lebensspanne. Charakteristisch für bestimmte Entwicklungsphasen.</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Migration</div>
+    <div class="card">
+      <div class="card-title">Definition &amp; Begriffe</div>
+      <p class="short-text">Dauerhafte/längerfristige Wanderung von Menschen. Emigration = Auswanderung; Immigration = Einwanderung; Binnenmigration = innerhalb eines Landes; Flüchtlinge = wegen Krieg/Verfolgung.</p>
+      <div class="detail">
+        <ul>
+          <li><strong>Emigration:</strong> Auswanderung aus einem Land</li>
+          <li><strong>Immigration:</strong> Einwanderung in ein Land</li>
+          <li><strong>Binnenmigration:</strong> Wanderung innerhalb eines Landes</li>
+          <li><strong>Internationale Migration:</strong> Wanderung über Staatsgrenzen</li>
+          <li><strong>Flüchtlinge:</strong> Menschen, die wegen Krieg, Verfolgung oder Gefahr fliehen</li>
+          <li><strong>Arbeitsmigration:</strong> Migration wegen Arbeit und besserem Einkommen</li>
+          <li><strong>Freiwillige Migration:</strong> aus freiem Willen (Liebe, Arbeit, Familie)</li>
+          <li><strong>Unfreiwillige Migration:</strong> Gefährdung des Lebens (Krieg, Verfolgung, Umwelt)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Push- &amp; Pull-Faktoren</div>
+      <p class="short-text">Push = negative Bedingungen im Herkunftsland (Krieg, Armut, Hunger). Pull = positive Bedingungen im Zielland (Arbeit, Lebensstandard, Sicherheit).</p>
+      <div class="detail">
+        <div class="grid2">
+          <div>
+            <p><strong>Push-Faktoren (Herkunftsland):</strong></p>
+            <ul>
+              <li>Krieg</li>
+              <li>Armut</li>
+              <li>Arbeitslosigkeit</li>
+              <li>Hunger</li>
+              <li>Politische Verfolgung</li>
+              <li>Naturkatastrophen</li>
+            </ul>
+          </div>
+          <div>
+            <p><strong>Pull-Faktoren (Zielland):</strong></p>
+            <ul>
+              <li>Bessere Arbeitsmöglichkeiten</li>
+              <li>Höherer Lebensstandard</li>
+              <li>Sicherheit</li>
+              <li>Bildung</li>
+              <li>Soziale Absicherung</li>
+              <li>Politische Freiheit</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Migration in Europa</div>
+      <p class="short-text">Europa = wichtiges Zielgebiet. Gründe: gute Wirtschaft, hohe Lebensqualität, Sicherheit. Herkunft: naher Osten, Afrika, Osteuropa, Asien.</p>
+      <div class="detail">
+        <p>Europa ist ein wichtiges Zielgebiet für Migration. Gründe: <strong>gute Wirtschaft, hohe Lebensqualität, Sicherheit, Arbeitsplätze</strong>. Typische Herkunftsregionen: naher Osten, Afrika, Osteuropa, Asien.</p>
+        <p><strong>Chancen:</strong> mehr Arbeitskräfte, Fachkräfte, höhere Steuereinnahmen, kulturelle Vielfalt, jüngere Bevölkerung.</p>
+        <p><strong>Risiken:</strong> Integrationsprobleme, Sprachbarrieren, Wohnungsprobleme, höhere Belastung von Schule/Sozialsystem.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Fallbeispiel: China</div>
+    <div class="card">
+      <div class="card-title">Ein-Kind-Politik (1979)</div>
+      <p class="short-text">Ziel: Bevölkerungswachstum bremsen, Ressourcen sparen, Wirtschaft stärken. Folgen: langsameres Wachstum, Überalterung, wenige junge Arbeitskräfte, Männerüberschuss, schrumpfende Bevölkerung.</p>
+      <div class="detail">
+        <p><strong>Ziel:</strong> Bevölkerungswachstum bremsen, Ressourcen sparen, Wirtschaft stärken.</p>
+        <p><strong>Folgen:</strong> Langsameres Bevölkerungswachstum, wirtschaftliche Entwicklung erleichtert, aber auch: Überalterung, wenige junge Arbeitskräfte, Männerüberschuss (Söhne traditionell bevorzugt), schrumpfende Bevölkerung.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Drei-Kind-Politik (seit 2021)</div>
+      <p class="short-text">China hat heute zu wenige Geburten → erst Zwei-Kind- dann Drei-Kind-Politik. Ziel: mehr Geburten, jüngere Bevölkerung, Arbeitskräfte sichern. ABER: viele Familien wollen trotzdem wenige Kinder (hohe Kosten, Karriere, Wohnungsprobleme).</p>
+      <div class="detail">
+        <p>Da China heute zu wenige Geburten hat: zuerst Zwei-Kind-Politik, seit 2021 <strong>Drei-Kind-Politik</strong>. Ziel: mehr Geburten, jüngere Bevölkerung, Arbeitskräfte sichern. Aber: viele Familien wollen trotzdem wenige Kinder wegen hoher Lebenshaltungskosten, Karriereplanung und Wohnungsproblemen.</p>
+      </div>
+    </div>
+    <div class="highlight">
+      <strong>Chinas Bevölkerungspyramide 2025:</strong> Urnen-/Bienenkorbform (keine klassische Pyramide). Schmale Basis → niedrige Geburtenraten. Breite Mitte → viele im erwerbsfähigen Alter. Breiter oberer Bereich → alternde Bevölkerung. China = Phase 5 (schrumpfende Bevölkerung).
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">Demografischer Übergang</span>
+      <span class="pill">Geburtenrate</span>
+      <span class="pill">Sterberate</span>
+      <span class="pill">Bevölkerungspyramide</span>
+      <span class="pill">Überbevölkerung</span>
+      <span class="pill">Migration</span>
+      <span class="pill">Push-Faktoren</span>
+      <span class="pill">Pull-Faktoren</span>
+      <span class="pill">Flüchtlinge</span>
+      <span class="pill">Arbeitsmigration</span>
+      <span class="pill">Ein-Kind-Politik</span>
+      <span class="pill">Überalterung</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ T3: STÄDTE ═══════════════ -->
+<div id="t3" class="panel t3-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t3)">03</div>
+    <div>
+      <div class="topic-title" style="color:var(--t3)">Städte als Lebens- &amp;<br><span>Wirtschaftsräume</span></div>
+      <div class="topic-keywords">Stadttypen · Global Cities · Megacities · Räumliche Disparitäten · Stadtentwicklung · Gentrifizierung</div>
+    </div>
+  </div>
+
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Definition &amp; Stadtgrößen</div>
+    <div class="card">
+      <div class="card-title">Wann ist eine Stadt eine Stadt?</div>
+      <p class="short-text">Keine weltweit einheitliche Definition. Österreich: ab 10.000 Einwohnern. Auch historische Stadtrechte zählen. Definition: statistisch, rechtlich oder funktional.</p>
+      <div class="detail">
+        <p>Es gibt <strong>keine weltweit einheitliche Definition</strong>. In Österreich: ab 10.000 Einwohnern; historische Stadtrecht-Verleihungen zählen ebenfalls. Definitionen: statistisch (Bevölkerungszahl), rechtlich (Stadttitel), funktional (Wirtschaft, Infrastruktur).</p>
+      </div>
+    </div>
+    <table class="compare-table">
+      <thead><tr><th>Stadttyp</th><th>Einwohner</th><th>Funktion</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Kleinstadt</strong></td><td>unter 20.000</td><td>Lokales Zentrum für Handel/Dienste</td></tr>
+        <tr><td><strong>Mittelstadt</strong></td><td>20.000–100.000</td><td>Regionales Zentrum</td></tr>
+        <tr><td><strong>Großstadt</strong></td><td>über 100.000</td><td>Bildung, Arbeit, Freizeit</td></tr>
+        <tr><td><strong>Metropole</strong></td><td>ab 1 Million</td><td>Hauptstadtfunktionen</td></tr>
+        <tr><td><strong>Megacity</strong></td><td>über 10 Millionen</td><td>Globale wirtschaftl. Bedeutung</td></tr>
+        <tr><td><strong>Global City</strong></td><td>variabel</td><td>Kontrollzentrum der Weltwirtschaft</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Stadttypen im Vergleich</div>
+    <table class="compare-table">
+      <thead><tr><th>Stadttyp</th><th>Zentrum</th><th>Straßennetz</th><th>Sozialstruktur</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Europäische Stadt</strong></td><td>Altstadt mit Handel, Verwaltung</td><td>Unregelmäßig, enge Straßen</td><td>Wohnen + Arbeiten gemischt</td></tr>
+        <tr><td><strong>Orientalisch-islamisch</strong></td><td>Moschee &amp; Basar (Suq)</td><td>Sehr enge, verwinkelte Gassen</td><td>Viertel nach Religion/Sozialgruppe</td></tr>
+        <tr><td><strong>Chinesische Stadt</strong></td><td>Kaiserpalast/Verwaltung</td><td>Geplant, symmetrisch</td><td>Nach sozialem Status geordnet</td></tr>
+        <tr><td><strong>Lateinamerikanisch</strong></td><td>Plaza Mayor mit Kirche</td><td>Schachbrettmuster</td><td>Reich im Zentrum → arm am Rand</td></tr>
+        <tr><td><strong>US-amerikanisch</strong></td><td>CBD mit Hochhäusern</td><td>Schachbrettmuster</td><td>Suburbs + Einfamilienhäuser außen</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Räumliche Disparitäten</div>
+    <div class="card">
+      <div class="card-title">Definition &amp; Erscheinungsformen</div>
+      <p class="short-text">Ungleiche Lebensbedingungen innerhalb eines Raumes. Soziale Segregation (Trennung von Gruppen), infrastrukturelle Unterschiede, wirtschaftliches Gefälle zwischen Stadtteilen.</p>
+      <div class="detail">
+        <p>Räumliche Disparitäten = <strong>ungleiche Lebensbedingungen</strong> innerhalb eines Raumes. Erscheinungsformen:</p>
+        <ul>
+          <li><strong>Soziale Segregation:</strong> Räumliche Trennung sozialer Gruppen (Reiche im Zentrum/Gated Communities, Arme in Peripherien/Favelas)</li>
+          <li><strong>Infrastrukturelle Unterschiede:</strong> Ungleiche Verteilung von Bildung, Gesundheitsversorgung, Verkehr</li>
+          <li><strong>Wirtschaftliches Gefälle:</strong> Hochbezahlte Jobs im CBD vs. prekäre Arbeit am Stadtrand</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Global Cities</div>
+    <div class="card">
+      <div class="card-title">Merkmale &amp; Probleme</div>
+      <p class="short-text">Kontroll- und Steuerungszentrum der globalen Wirtschaft. Positiv: Wirtschaftsinnovation, vielfältige Arbeitsmärkte. Negativ: Soziale Polarisierung, Wohnungsnot, Gentrifizierung, Umweltbelastung.</p>
+      <div class="detail">
+        <p>Eine <strong>Global City</strong> fungiert als Kontroll- und Steuerungszentrum der globalen Wirtschaft, Politik und Kultur.</p>
+        <p><strong>Positiv:</strong> Wirtschaftliche Innovationskraft, breites Spektrum an hochqualifizierten Arbeitsplätzen.</p>
+        <p><strong>Negativ:</strong> Soziale Polarisierung (Luxusimmobilien neben sozialen Brennpunkten), Wohnungsnot und Gentrifizierung (Verdrängung einkommensschwacher Gruppen), Umweltbelastung (Smog, Entsorgung).</p>
+      </div>
+    </div>
+    <div class="highlight">
+      <strong>Gentrifizierung:</strong> Aufwertung von Stadtvierteln durch Zuzug einkommensstarker Gruppen → explodierende Mieten → Verdrängung der ursprünglichen (ärmeren) Bevölkerung.
+    </div>
+    <div class="highlight">
+      <strong>Urban Sprawl (Suburbanisierung):</strong> Unkontrolliertes Ausbreiten der Stadt ins Umland. Typisch für US-amerikanische Städte. Folgen: Autoabhängigkeit, hoher Flächenverbrauch, Edge Cities.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Chancen &amp; Herausforderungen</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Chancen städtischen Wachstums</div>
+        <ul>
+          <li>Vielfältige Arbeitsmöglichkeiten</li>
+          <li>Wirtschaftliche Dynamik</li>
+          <li>Zugang zu Bildungs- &amp; Kultureinrichtungen</li>
+          <li>Agglomerationsvorteile</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Herausforderungen</div>
+        <ul>
+          <li>Hoher Bedarf an Wohnraum</li>
+          <li>Verkehrssysteme</li>
+          <li>Lärmbelastung, wenig Erholungsflächen</li>
+          <li>Nachhaltige Stadtplanung (Klimawandel)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">Megacity</span>
+      <span class="pill">Global City</span>
+      <span class="pill">CBD</span>
+      <span class="pill">Suburbanisierung</span>
+      <span class="pill">Gentrifizierung</span>
+      <span class="pill">Soziale Segregation</span>
+      <span class="pill">Favela</span>
+      <span class="pill">Räumliche Disparitäten</span>
+      <span class="pill">Plaza Mayor</span>
+      <span class="pill">Medina</span>
+      <span class="pill">Urban Sprawl</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ T4: EUROPÄISCHE UNION ═══════════════ -->
+<div id="t4" class="panel t4-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t4)">04</div>
+    <div>
+      <div class="topic-title" style="color:var(--t4)">Europäische<br><span>Union</span></div>
+      <div class="topic-keywords">Geschichte · Verträge · 4 Grundfreiheiten · Symbole · Erweiterung · Institutionen</div>
+    </div>
+  </div>
+
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Grunddaten &amp; Symbole</div>
+    <div class="card">
+      <div class="card-title">Grundlegende Informationen</div>
+      <p class="short-text">27 Mitgliedsstaaten, ~450 Mio. Einwohner, ~4,1 Mio. km², 24 Amtssprachen, 109 Einwohner/km².</p>
+      <div class="detail">
+        <ul>
+          <li><strong>Fläche:</strong> ~4,1–4,2 Millionen km²</li>
+          <li><strong>Bevölkerung:</strong> ~450 Millionen Einwohner</li>
+          <li><strong>Bevölkerungsdichte:</strong> ~109 Einwohner/km²</li>
+          <li><strong>Mitgliedsstaaten:</strong> 27</li>
+          <li><strong>Amtssprachen:</strong> 24</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Symbole der EU</div>
+      <p class="short-text">Flagge: 12 Sterne (Einheit, Solidarität, Vollkommenheit – NICHT Anzahl der Mitglieder!). Hymne: „Ode an die Freude" (Schiller/Beethoven). Motto: „In Vielfalt geeint".</p>
+      <div class="detail">
+        <p><strong>Flagge:</strong> 12 Sterne für Einheit, Solidarität, Harmonie — sie stehen ausdrücklich <em>nicht</em> für die Anzahl der Mitgliedsstaaten, sondern symbolisieren Vollkommenheit.</p>
+        <p><strong>Hymne:</strong> Instrumentalversion der „Ode an die Freude" (Schiller 1785, Beethoven 1823) — Botschaft: Freiheit, Frieden, Brüderlichkeit.</p>
+        <p><strong>Motto:</strong> „In Vielfalt geeint" — gemeinsam für Frieden und Demokratie, aber jedes Land behält seine Identität.</p>
+        <p><strong>Europatage:</strong> 5. Mai (Gründung Europarat 1949) und 9. Mai (Schuman-Erklärung 1950).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Geschichte der EU: 1940er–1960er</div>
+    <div class="card">
+      <div class="card-title">EGKS &amp; EWG (1950–1957)</div>
+      <p class="short-text">1950: EGKS (Europäische Gemeinschaft für Kohle und Stahl). Gründer: Frankreich, Deutschland, Italien, Benelux. Ziel: Frieden sichern, Rüstungsgüter gemeinsam kontrollieren. 1957: Vertrag von Rom → EWG + Euratom.</p>
+      <div class="detail">
+        <p><strong>1950 EGKS:</strong> Gründungsmitglieder: Frankreich, Deutschland (BRD), Italien, Belgien, Niederlande, Luxemburg. Ziele: Frieden sichern durch gemeinsame Kontrolle von Kohle &amp; Stahl, gemeinsamer Markt.</p>
+        <p><strong>1957 Vertrag von Rom:</strong> Gründung der EWG (Europäische Wirtschaftsgemeinschaft) → wirtschaftlicher Wiederaufbau, Zollabbau, Binnenmarkt mit den <strong>4 Grundfreiheiten</strong>. Gründung Euratom: friedliche Nutzung der Atomenergie.</p>
+        <p><strong>Wirtschaftlicher Aufschwung ab 1950er:</strong> Marshallplan, Wiederaufbau, stabile Verhältnisse → wachsender Wohlstand, sinkendes Arbeitslosigkeit, Beginn der Massenkonsumgesellschaft.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Geschichte: 1970er–1990er</div>
+    <div class="card">
+      <div class="card-title">Erweiterung &amp; Krisen (1970er–1980er)</div>
+      <p class="short-text">1973: Dänemark, Irland, GB treten bei (Brexit 2020). Ölkrisen 1973/79 → Rezession, Inflation. 1979: Erstes direkt gewähltes Europaparlament. Einheitliche Europäische Akte → Binnenmarkt bis 1992.</p>
+      <div class="detail">
+        <p><strong>1973:</strong> Dänemark, Irland, UK treten bei. Spanien und Portugal (nach Sturz der Diktaturen) folgen später.</p>
+        <p><strong>Ölkrisen (1973 &amp; 1979):</strong> Wirtschaftliche Rezession, Inflation, Arbeitslosigkeit → Umweltschutz auf Agenda.</p>
+        <p><strong>1979:</strong> Erstmals direkte Wahl des Europaparlaments.</p>
+        <p><strong>Einheitliche Europäische Akte (EEA):</strong> Erste große Reform, Vollendung Binnenmarkt bis 1992. Stärkung des Parlaments.</p>
+        <p><strong>1985/1990 Schengener Abkommen:</strong> Abschaffung der Personenkontrollen an Binnengrenzen, gemeinsame Außengrenzen.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Maastricht &amp; Lissabon (1992–2009)</div>
+      <p class="short-text">1992: Vertrag von Maastricht = offizieller Gründungsvertrag der EU. Gemeinsame Außen- und Sicherheitspolitik. 1993: Binnenmarkt in Kraft. 2009: Vertrag von Lissabon → effektiver, demokratischer, transparenter.</p>
+      <div class="detail">
+        <p><strong>1992 Vertrag von Maastricht:</strong> Offizieller Gründungsvertrag der EU. Gemeinsame Außen- und Sicherheitspolitik. Binnenmarkt (1993) mit Zollfreiheit und 4 Grundfreiheiten.</p>
+        <p><strong>1997 Vertrag von Amsterdam:</strong> Vorbereitung auf Osterweiterung.</p>
+        <p><strong>Euro-Einführung:</strong> Einheitliche Währung vereinfacht Handel — Preistransparenz, Wegfall von Wechselkursrisiken.</p>
+        <p><strong>2009 Vertrag von Lissabon:</strong> EU effektiver, demokratischer, transparenter. Stärkung des Parlaments und der nationalen Parlamente. Ständiger Präsident des Europäischen Rates.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Die 4 Grundfreiheiten</div>
+    <div class="card">
+      <div class="card-title">Freier Verkehr im Binnenmarkt</div>
+      <p class="short-text">Waren, Personen, Dienstleistungen, Kapital — dürfen frei innerhalb der EU zirkulieren (keine Zölle, keine Grenzkontrollen für EU-Bürger).</p>
+      <div class="detail">
+        <ul>
+          <li><strong>Freier Warenverkehr:</strong> Keine Zölle, keine mengenmäßigen Beschränkungen</li>
+          <li><strong>Freier Personenverkehr:</strong> EU-Bürger können überall in der EU leben, arbeiten, studieren</li>
+          <li><strong>Freier Dienstleistungsverkehr:</strong> Unternehmen können EU-weit Dienstleistungen anbieten</li>
+          <li><strong>Freier Kapitalverkehr:</strong> Geld und Investitionen frei über Grenzen</li>
+        </ul>
+        <p>Vorteile: Wirtschaftswachstum durch größeren Markt, sinkende Preise, mehr Wettbewerb, Förderung grenzüberschreitender Investitionen.</p>
+      </div>
+    </div>
+    <div class="highlight">
+      <strong>Neue Organisationen um 1960:</strong> EFTA (Europäische Freihandelsassoziation) — freier Handel ohne politische Integration. OECD — 38 Mitglieder (auch außereuropäisch), fördert wirtschaftliches Wachstum und Lebensstandard.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">EGKS</span>
+      <span class="pill">EWG</span>
+      <span class="pill">Vertrag von Rom</span>
+      <span class="pill">4 Grundfreiheiten</span>
+      <span class="pill">Binnenmarkt</span>
+      <span class="pill">Schengener Abkommen</span>
+      <span class="pill">Maastricht</span>
+      <span class="pill">Lissabon</span>
+      <span class="pill">Euro</span>
+      <span class="pill">Brexit</span>
+      <span class="pill">Marshallplan</span>
+      <span class="pill">EFTA</span>
+      <span class="pill">Osterweiterung</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ T5: PRODUKTIONSGEBIETE ═══════════════ -->
+<div id="t5" class="panel t5-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t5)">05</div>
+    <div>
+      <div class="topic-title" style="color:var(--t5)">Produktionsgebiete<br><span>im Wandel</span></div>
+      <div class="topic-keywords">Landwirtschaft · Tourismus · Dubai · Strukturwandel · Entwicklung · Globalisierung</div>
+    </div>
+  </div>
+
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Grundbegriff &amp; Überblick</div>
+    <div class="card">
+      <div class="card-title">Produktionsgebiete</div>
+      <p class="short-text">Regionen mit besonders stark ausgeprägten wirtschaftlichen Tätigkeiten: Landwirtschaft, Industrie, Tourismus. Verändern sich ständig durch Technik, Globalisierung, Klimawandel, gesellschaftliche Entwicklungen.</p>
+      <div class="detail">
+        <p>Produktionsgebiete sind Regionen, in denen wirtschaftliche Tätigkeiten besonders stark ausgeprägt sind — <strong>Landwirtschaft, Industrie und Tourismus</strong>. Diese Gebiete verändern sich ständig durch:</p>
+        <ul>
+          <li>Technischen Fortschritt und Digitalisierung</li>
+          <li>Globalisierung</li>
+          <li>Klimawandel</li>
+          <li>Gesellschaftliche Entwicklungen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Landwirtschaft in Österreich</div>
+    <div class="card">
+      <div class="card-title">Struktur &amp; Wandel</div>
+      <p class="short-text">Trotz moderner Industrie wichtige Rolle. In den Alpen: Viehzucht, Milchwirtschaft. Im Osten: Getreide, Gemüse, Wein. Wandel durch Maschinen, Klimawandel, Konkurrenzdruck, Bio-Nachfrage.</p>
+      <div class="detail">
+        <p>Landwirtschaft spielt trotz moderner Industrie in Österreich eine wichtige Rolle. <strong>In den Alpen:</strong> Viehzucht und Milchwirtschaft. <strong>Im Osten:</strong> Getreide, Gemüse und Wein.</p>
+        <p>Die Landwirtschaft verändert sich stark durch:</p>
+        <ul>
+          <li>Moderne Maschinen und Digitalisierung</li>
+          <li>Klimawandel und Trockenheit</li>
+          <li>Internationalen Konkurrenzdruck</li>
+          <li>Steigende Nachfrage nach Bio-Produkten</li>
+        </ul>
+        <p>Viele Bauern setzen heute auf nachhaltige und regionale Produktion.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Tourismus in Österreich</div>
+    <div class="card">
+      <div class="card-title">Bedeutung &amp; Probleme</div>
+      <p class="short-text">Wichtiger Wirtschaftszweig. Wintersport-, Wander- und Städtetourismus. Vorteile: Arbeitsplätze, Einkommen, Infrastruktur. Probleme durch Massentourismus: Umweltbelastung, Wasserverbrauch, überfüllte Regionen, steigende Preise für Einheimische.</p>
+      <div class="detail">
+        <p>Tourismus ist ein wichtiger Wirtschaftszweig in Österreich. Bekannt für <strong>Wintersport-, Wander- und Städtetourismus</strong>.</p>
+        <div class="grid2">
+          <div>
+            <p><strong>Vorteile:</strong></p>
+            <ul>
+              <li>Arbeitsplätze</li>
+              <li>Einkommen</li>
+              <li>Ausbau der Infrastruktur</li>
+            </ul>
+          </div>
+          <div>
+            <p><strong>Probleme (Massentourismus):</strong></p>
+            <ul>
+              <li>Umweltbelastung</li>
+              <li>Hoher Wasserverbrauch</li>
+              <li>Überfüllte Regionen</li>
+              <li>Steigende Preise für Einheimische</li>
+            </ul>
+          </div>
+        </div>
+        <p>Deshalb wird <strong>nachhaltiger Tourismus</strong> immer wichtiger — Umwelt- und Naturschutz im Mittelpunkt.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Fallbeispiel: Dubai</div>
+    <div class="card">
+      <div class="card-title">Aufstieg zur Weltmetropole</div>
+      <p class="short-text">Von kleiner Wüstenstadt zur modernen Weltmetropole. Beginn: Erdöl-Einnahmen. Heute: Tourismus, Handel, Finanzwirtschaft, Luxus-Hotels. Basis: gute Infrastruktur, internationale Investitionen, Technologie.</p>
+      <div class="detail">
+        <p>Dubai entwickelte sich innerhalb weniger Jahrzehnte von einer kleinen Wüstenstadt zu einer modernen Weltmetropole. <strong>Start:</strong> wirtschaftlicher Aufschwung durch Erdöl. Mit den Einnahmen wurden Straßen, Flughäfen und moderne Gebäude gebaut.</p>
+        <p>Heute bekannt für:</p>
+        <ul>
+          <li>Tourismus</li>
+          <li>Handel</li>
+          <li>Finanzwirtschaft</li>
+          <li>Luxus-Hotels</li>
+          <li>Große Bauprojekte</li>
+        </ul>
+        <p>Basis des Erfolgs: gute Infrastruktur, internationale Investitionen, moderne Technologie.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Probleme Dubais</div>
+      <p class="short-text">Hoher Energieverbrauch, Wasserknappheit, soziale Unterschiede, schlechte Arbeitsbedingungen vieler Gastarbeiter.</p>
+      <div class="detail">
+        <ul>
+          <li><strong>Hoher Energieverbrauch</strong></li>
+          <li><strong>Wasserknappheit</strong> (Wüstenklima)</li>
+          <li><strong>Soziale Unterschiede</strong> (extreme Reiche und arme Gastarbeiter)</li>
+          <li><strong>Schlechte Arbeitsbedingungen</strong> vieler Gastarbeiter (Migranten aus Südasien)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Entwicklungsfaktoren &amp; Strukturwandel</div>
+    <div class="card">
+      <div class="card-title">Was beeinflusst die Entwicklung?</div>
+      <p class="short-text">Bildung, Infrastruktur, politische Stabilität, Globalisierung. Je besser diese Faktoren, desto stärker wirtschaftliches Wachstum.</p>
+      <div class="detail">
+        <ul>
+          <li><strong>Bildung:</strong> Gut ausgebildete Menschen fördern Innovation und Wirtschaftswachstum</li>
+          <li><strong>Infrastruktur:</strong> Straßen, Strom, Internet, Schulen</li>
+          <li><strong>Politische Stabilität:</strong> Sicherheit fördert Investitionen</li>
+          <li><strong>Globalisierung:</strong> Internationale Handelsbeziehungen schaffen Chancen, bringen aber auch Konkurrenzdruck</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Strukturwandel der Produktionsgebiete</div>
+      <p class="short-text">Treiber: Technischer Fortschritt, Klimawandel, Globalisierung, Nachhaltigkeit. Zukunft: Erneuerbare Energien, klimafreundliche Produktion, nachhaltiger Tourismus, moderne Technologien.</p>
+      <div class="detail">
+        <p>Produktionsgebiete verändern sich durch technischen Fortschritt/Digitalisierung, Klimawandel, Globalisierung und nachhaltige Entwicklung.</p>
+        <p>Besonders wichtig werden in Zukunft:</p>
+        <ul>
+          <li>Erneuerbare Energien</li>
+          <li>Klimafreundliche Produktion</li>
+          <li>Nachhaltiger Tourismus</li>
+          <li>Moderne Technologien</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">Produktionsgebiete</span>
+      <span class="pill">Strukturwandel</span>
+      <span class="pill">Massentourismus</span>
+      <span class="pill">Nachhaltiger Tourismus</span>
+      <span class="pill">Digitalisierung</span>
+      <span class="pill">Globalisierung</span>
+      <span class="pill">Bio-Produkte</span>
+      <span class="pill">Dubai</span>
+      <span class="pill">Erdöl</span>
+      <span class="pill">Gastarbeiter</span>
+      <span class="pill">Erneuerbare Energien</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ T6: ÖSTERREICH & EU ═══════════════ -->
+<div id="t6" class="panel t6-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t6)">06</div>
+    <div>
+      <div class="topic-title" style="color:var(--t6)">Veränderung der geo-wirtschaftspolitischen<br><span>Lage Österreichs</span></div>
+      <div class="topic-keywords">EU-Beitritt · Staatsvertrag · Regionale Unterschiede · Transitland · Folgen</div>
+    </div>
+  </div>
+
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Vorgeschichte &amp; Beitritt</div>
+    <div class="card">
+      <div class="card-title">Staatsvertrag 1955 &amp; Anschlussverbot</div>
+      <p class="short-text">1955: Staatsvertrag → Anschlussverbot (Artikel 4). Österreich darf sich weder politisch noch wirtschaftlich mit Deutschland verbünden. Garantiemächte: Frankreich, GB, UdSSR, USA. UdSSR war gegen EU-Beitritt.</p>
+      <div class="detail">
+        <p><strong>1955 Staatsvertrag:</strong> Artikel 4 verbietet politische und wirtschaftliche Verbündung mit Deutschland. Garantiemächte (Siegermächte): Frankreich, GB, UdSSR, USA. Die UdSSR war gegen einen Beitritt Österreichs in europäische Gemeinschaften.</p>
+        <p><strong>1989–1991:</strong> UdSSR löst sich auf → EU-Beitritt wird möglich.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Der Beitrittsweg</div>
+      <p class="short-text">1989: Antrag. 1993/94: Verhandlungen (Ö, Norwegen, Finnland, Schweden). 1994: Volksabstimmung 67% JA, Nationalrat 140:35 JA. 01.01.1995: Beitritt.</p>
+      <div class="detail">
+        <ul>
+          <li><strong>1989:</strong> Beitrittsantrag wird gestellt</li>
+          <li><strong>1993–1994:</strong> Verhandlungen für Österreich, Norwegen, Finnland, Schweden</li>
+          <li><strong>1994:</strong> Volksabstimmung (67% JA) + Nationalratsabstimmung (140:35 JA)</li>
+          <li><strong>01.01.1995:</strong> Offizieller Beitritt Österreichs zur EU</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Folgen des EU-Beitritts</div>
+    <div class="card">
+      <div class="card-title">Wirtschaftliche Folgen</div>
+      <p class="short-text">Export hat sich seit den 90ern vervierfacht. Betriebe sparen Zollkosten. Österreich attraktiver für ausländische Investoren: Direktinvestitionen von 16 Mrd. (90er) auf 205 Mrd. (2020er). Fördergelder in Milliardenhöhe.</p>
+      <div class="detail">
+        <ul>
+          <li><strong>Export</strong> hat sich seit den 90ern vervierfacht</li>
+          <li>Betriebe sparen sich <strong>Zollkosten</strong></li>
+          <li>Österreich spannender für ausländische Investoren → <strong>Direktinvestitionen</strong>: 90er: 16 Mrd. → 2020er: 205 Mrd.</li>
+          <li>Fördergelder in Milliardenhöhe</li>
+          <li>Mitglied <strong>Schengenraum</strong></li>
+          <li><strong>Euro</strong> (2002)</li>
+          <li>Österreich wurde zum <strong>Tor nach Osteuropa</strong> → wichtiges Transitland</li>
+          <li><strong>Tourismusboom</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Regionale Unterschiede</div>
+    <table class="compare-table">
+      <thead><tr><th>Region</th><th>Entwicklung</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Oberösterreich, Steiermark, Rheintal</strong></td><td>Zentren für Sachgüterproduktion &amp; Schwerindustrie für ganz Europa. Rheintal: eines der industrialisiertesten Gebiete Europas.</td></tr>
+        <tr><td><strong>Alpenregion</strong></td><td>Tourismusboom, Bergsport. Problem: Massentourismus.</td></tr>
+        <tr><td><strong>Salzburg/Tirol</strong></td><td>Starke Verkehrsbelastung durch DE–IT-Verbindung.</td></tr>
+        <tr><td><strong>Wien</strong></td><td>Nach Fall des Eisernen Vorhangs: Internationale Organisationen, Banken, Konzernsitze.</td></tr>
+        <tr><td><strong>Burgenland</strong></td><td>Arme Grenzregion → durch EU-Förderungen: Infrastrukturausbau, produziert heute mehr Energie (Wind, Sonne) als es verbraucht.</td></tr>
+        <tr><td><strong>Weinviertel</strong></td><td>Arme Grenzregion → durch EU-Förderungen: Infrastrukturausbau.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Österreich als Transitland</div>
+    <div class="card">
+      <div class="card-title">Lage &amp; Achsen</div>
+      <p class="short-text">Lage im Herz Europas → eines der wichtigsten Transitländer. Nord-Süd-Achse: Brenner-Pass (DE–IT). West-Ost-Achse: Donau-Route (WestEU–OstEU). Nachteil: immense Verkehrsbelastung.</p>
+      <div class="detail">
+        <p>Durch seine Lage im Herz Europas ist Österreich eines der wichtigsten Transitländer.</p>
+        <ul>
+          <li><strong>Nord-Süd-Achse:</strong> Routen wie der Brenner-Pass verbinden Deutschland und Italien</li>
+          <li><strong>West-Ost-Achse:</strong> Routen entlang der Donau verbinden Westeuropa mit Osteuropa</li>
+        </ul>
+        <p><strong>Nachteil:</strong> immense Verkehrsbelastung. Österreich versucht in der EU striktere Umweltschutzauflagen einzuführen.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">Staatsvertrag 1955</span>
+      <span class="pill">Anschlussverbot</span>
+      <span class="pill">EU-Beitritt 1995</span>
+      <span class="pill">Volksabstimmung</span>
+      <span class="pill">Direktinvestitionen</span>
+      <span class="pill">Transitland</span>
+      <span class="pill">Brenner-Pass</span>
+      <span class="pill">Eiserner Vorhang</span>
+      <span class="pill">Schengenraum</span>
+      <span class="pill">Tourismusboom</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ T7: NATUR- UND KULTURRAUM ÖSTERREICH ═══════════════ -->
+<div id="t7" class="panel t7-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t7)">07</div>
+    <div>
+      <div class="topic-title" style="color:var(--t7)">Natur- und Kulturraum<br><span>Österreich</span></div>
+      <div class="topic-keywords">Großlandschaften · Klimazonen · Wirtschaftliche Nutzung · Gletscher · Geothermie · Föhn</div>
+    </div>
+  </div>
+
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Großlandschaften Österreichs</div>
+    <div class="card">
+      <div class="card-title">Die Ostalpen (West-Ost-Gliederung)</div>
+      <p class="short-text">Sandsteinzone (Flyschzone) → Nördliche Kalkalpen → Grauwackenzone (Schieferzone) → Zentralalpen → Südliche Ostalpen. Plus: Böhmische Masse (Granit/Gneis), Vorländer/Becken/Ebenen (Wiener Becken, Karpatenvorland).</p>
+      <div class="detail">
+        <p>Die Ostalpen lassen sich in West-Ost-Richtung in Gesteinszonen gliedern:</p>
+        <ol style="padding-left:1.2rem; color:#c8c4bc; font-size:0.88rem;">
+          <li>Sandsteinzone (Flyschzone)</li>
+          <li>Nördliche Kalkalpen</li>
+          <li>Grauwackenzone (Schieferzone)</li>
+          <li>Zentralalpen</li>
+          <li>Südliche Ostalpen</li>
+        </ol>
+        <p>Weitere Großlandschaften: <strong>Böhmische Masse</strong> (Granit- und Gneishochland) im Norden, <strong>Vorländer, Becken und Ebenen</strong> (Alpenvorland, Wiener Becken, Karpatenvorland, Kleine ungarische Tiefebene, Klagenfurter Becken).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Klima Österreich</div>
+    <div class="card">
+      <div class="card-title">Überblick Klimazone</div>
+      <p class="short-text">Kühlgemäßigte Klimazone, zwischen Hochdruckzellen der Subtropen und subpolarer Tiefdruckrinne. Übergangsbereich ozeanisch/kontinental. Drei häufige Großwetterlagen: West/NW, Adria/Genua-Tief, Hochdruck Osteuropa.</p>
+      <div class="detail">
+        <p>Österreich liegt in der <strong>kühlgemäßigten Klimazone</strong>, im Übergangsbereich zwischen ozeanischer und kontinentaler Ausprägung. Langanhaltende stabile Wetterlagen sind selten.</p>
+      </div>
+    </div>
+    <table class="compare-table">
+      <thead><tr><th>Großwetterlage</th><th>Wirkung</th></tr></thead>
+      <tbody>
+        <tr><td><strong>West-/NW-Wetterlage</strong></td><td>Beeinflusst Norden des Alpenhauptkammes. Azorenhoch + Islandtief. Hohe Niederschlagsneigung, Abkühlung im Sommer, Tauwetter im Winter.</td></tr>
+        <tr><td><strong>Adria-/Genua-Tief</strong></td><td>Niederschläge im Süden und Südosten. Starkregen → Überschwemmungen möglich.</td></tr>
+        <tr><td><strong>Hochdruck Osteuropa</strong></td><td>Extreme Frostperioden im Winter, Hitzewellen im Sommer.</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight">
+      <strong>Alpen als Wetterscheide:</strong> Höhere Sonnenscheindauer von Kärnten bis Burgenland (mediterrane + pannonische Einflüsse). Steigungsregen auf einer Seite → <strong>Föhneffekt</strong> auf der anderen (Erwärmung beim Abstieg um ~1°C/100m trockene Luft).
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Klima &amp; Wirtschaftliche Nutzung</div>
+    <table class="compare-table">
+      <thead><tr><th>Region</th><th>Klima</th><th>Wirtschaftliche Nutzung</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Westen</strong></td><td>Feuchter, milder, viel Niederschlag</td><td>Grünlandwirtschaft, Viehzucht, Milchwirtschaft; Alpen: Wintertourismus</td></tr>
+        <tr><td><strong>Osten</strong></td><td>Trockener, kontinental, heiße Sommer, kalte Winter</td><td>Ackerbau (Getreide, Gemüse), Weinbau</td></tr>
+        <tr><td><strong>Alpen</strong></td><td>Kälter, kürzere Vegetationsperiode</td><td>Almwirtschaft, Tourismus, Wasserkraft</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Gletscher</div>
+    <div class="card">
+      <div class="card-title">Gletscher in Österreich</div>
+      <p class="short-text">Große Eismassen, nur in den Alpen (Zentralalpen: Hohe Tauern, Ötztaler Alpen). Größter: Pasterze am Großglockner. Funktion: Sommerwasser, Energiegewinnung, Tourismus, Klimaindikator.</p>
+      <div class="detail">
+        <p>Gletscher sind große Eismassen aus Schnee, die sich langsam talwärts bewegen. In Österreich nur in den Alpen (Zentralalpen: Hohe Tauern, Ötztaler Alpen). <strong>Größter:</strong> Pasterze am Großglockner.</p>
+        <p><strong>Bedeutung:</strong> Sommerwasser-Lieferant, Energiegewinnung, Tourismusattraktion, <strong>wichtiger Klimawandel-Indikator</strong>.</p>
+        <p><strong>Problem:</strong> In den letzten Jahren stark zurückgegangen (kleiner, dünner). Folgen: weniger Wasser in Trockenzeiten, mehr Naturgefahren (Steinschlag, Gletscherseen).</p>
+      </div>
+    </div>
+    <div class="highlight">
+      <strong>Gletscherteile:</strong> Nährgebiet (wo Schnee fällt) → Firnfeld → Gletscherzunge → Gletschertor. Seitenmorän, Mittelmorän, Stirnmorän = Gesteinsablagerungen.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Geothermie</div>
+    <div class="card">
+      <div class="card-title">Geothermie in Österreich</div>
+      <p class="short-text">Erdwärme = in der Erde gespeicherte Wärmeenergie. In Mitteleuropa: Temp. steigt ~3°C pro 100m Tiefe. Hauptnutzung: Heizen/Fernwärme. Wichtigstes Gebiet: Wiener Becken. Projekt im 22. Bezirk Wien.</p>
+      <div class="detail">
+        <p>Geothermie (Erdwärme) = die in der Erde gespeicherte Wärmeenergie. Ursprung: Wärmestrom aus dem Erdkern + Zerfall natürlicher Radioisotope. In Mitteleuropa: Temperatur steigt um ~3°C pro 100m Tiefe.</p>
+        <p><strong>In Österreich:</strong> Hauptsächlich zum Heizen (Fernwärme). Wichtigstes Gebiet: <strong>Wiener Becken</strong> (günstige geologische Bedingungen). Bauprojekt im 22. Bezirk Wien als Beispiel.</p>
+        <p><strong>Vorteile:</strong> Lokal verfügbar, grundlastfähig, erneuerbar, geringer Flächenbedarf, preisstabil, nach menschlichen Maßstäben unerschöpflich.</p>
+        <p><strong>Nachteile:</strong> Teuer, nicht überall nutzbar.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">Zentralalpen</span>
+      <span class="pill">Kalkalpen</span>
+      <span class="pill">Flyschzone</span>
+      <span class="pill">Kühlgemäßigte Zone</span>
+      <span class="pill">Föhn</span>
+      <span class="pill">Azorenhoch</span>
+      <span class="pill">Pasterze</span>
+      <span class="pill">Gletscher</span>
+      <span class="pill">Gletscherseen</span>
+      <span class="pill">Geothermie</span>
+      <span class="pill">Wiener Becken</span>
+      <span class="pill">Almwirtschaft</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ T8: SOZIALPOLITIK & KONJUNKTUR ═══════════════ -->
+<div id="t8" class="panel t8-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t8)">08</div>
+    <div>
+      <div class="topic-title" style="color:var(--t8)">Gesamtwirtschaftliche Leistungen &amp;<br><span>Sozialpolitik</span></div>
+      <div class="topic-keywords">Sozialstaat · Versicherungen · Steuern · Konjunkturzyklus · Arbeitslosigkeit · Frankreich</div>
+    </div>
+  </div>
+
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Der Sozialstaat</div>
+    <div class="card">
+      <div class="card-title">Ziele des Sozialstaates</div>
+      <p class="short-text">Teilhabe an gesellschaftlichen/politischen Prozessen. Ungleichheit reduzieren. Grundbedürfnisse absichern. Ärmere integrieren &amp; Gesellschaft stabilisieren. Krisenabsicherung. Finanziert durch Sozialversicherungsbeiträge &amp; Steuern.</p>
+      <div class="detail">
+        <ul>
+          <li>Teilhabe der Bevölkerung an gesellschaftlichen und politischen Prozessen</li>
+          <li>Ungleichheit reduzieren (z.B. Einkommen)</li>
+          <li>Absicherung der Grundbedürfnisse (z.B. medizinische Versorgung)</li>
+          <li>Ärmere Bevölkerung integrieren und Gesellschaftsordnung stabilisieren (z.B. Bildung)</li>
+          <li>Menschen im Krisenfall absichern</li>
+          <li>Finanziert durch Sozialversicherungsbeiträge und Steuern</li>
+        </ul>
+        <p><strong>Beispiele:</strong> Bundesmuseen, Bundestheater, öffentliche Schulen, städtische Kindergärten, öffentliche Schwimmbäder, öffentliche Verkehrsmittel.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Kritikpunkte am Sozialstaat</div>
+      <p class="short-text">Weniger Anreiz zu arbeiten (Arbeitslosengeld). Gefahr langfristiger Abhängigkeiten. Höhere Steuerlast. Missbrauchsgefahr. Junge zahlen viele Steuern, aber staatliche Verschuldung macht zukünftige Pensionen unsicher.</p>
+      <div class="detail">
+        <ul>
+          <li>Durch Arbeitslosengeld weniger Anreiz zu arbeiten</li>
+          <li>Gefahr für langfristige Abhängigkeiten</li>
+          <li>Bevölkerung zahlt mehr Steuern</li>
+          <li>Missbrauchsgefahr (z.B. Schwarzarbeit trotz Sozialgeldern)</li>
+          <li>Jüngere Menschen fürchten, dass sie trotz hoher Steuerzahlungen zukünftig keine Pension bekommen (staatliche Verschuldung)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="highlight">
+      <strong>Soziale Ausgaben Österreich:</strong> 1990: 34,47 Mrd. / 26,1% BIP · 2015: 102,8 Mrd. / 29,9% · 2020: 129,23 Mrd. / 34,1%. Größter Posten 2025: Soziale Sicherung (41,3%), dann Gesundheitswesen (17,8%).
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Steuern &amp; Versicherungen</div>
+    <div class="card">
+      <div class="card-title">Lohnsteuerklassen in Österreich</div>
+      <p class="short-text">Leistungsgerechtes Steuersystem: jeder zahlt nach Einkommenshöhe. ≤11.000€ = 0% · 18.000–31.000€ = 30% · 60.000–90.000€ = 48% · ≥1.000.000€ = 50%.</p>
+      <div class="detail">
+        <table class="compare-table">
+          <thead><tr><th>Einkommensbereich</th><th>Steuersatz</th></tr></thead>
+          <tbody>
+            <tr><td>11.000 € oder weniger</td><td>0 %</td></tr>
+            <tr><td>18.000 € – 31.000 €</td><td>30 %</td></tr>
+            <tr><td>60.000 € – 90.000 €</td><td>48 %</td></tr>
+            <tr><td>1.000.000 € oder mehr</td><td>50 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Versicherungssystem</div>
+      <p class="short-text">Sozialversicherung (Unfall, Kranken, Pension). Arbeitslosenversicherung. Soziale Versorgung (z.B. Impfschadens-Opfer). Soziale Hilfe (Lückenfüller für alle Notlagen). Träger: ÖGK, SVS, BVAEB, PVA, AUVA.</p>
+      <div class="detail">
+        <ul>
+          <li><strong>Sozialversicherung:</strong> Unfall-, Kranken-, Pensionsversicherung</li>
+          <li><strong>Arbeitslosenversicherung:</strong> finanzielle Unterstützung, Jobsuche-Hilfe</li>
+          <li><strong>Soziale Versorgung:</strong> z.B. Hilfe für Opfer von Impfschäden</li>
+          <li><strong>Soziale Hilfe:</strong> für Menschen in Notlagen, füllt alle restlichen Lücken</li>
+        </ul>
+        <p><strong>Träger:</strong> ÖGK (Arbeitnehmer), SVS (Selbständige), BVAEB (öffentlich Bedienstete, Eisenbahn, Bergbau), PVA (Pensionisten), AUVA (allgemein Unfall).</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Wer darf Leistungen beanspruchen?</div>
+      <p class="short-text">Asylsuchende: gar nicht. Subsidiär Schutzberechtigte: nur Kernleistungen, befristet. Asylberechtigte: ab Anerkennung. Drittstaatsbürger: nach 5 Jahren in Ö. EU-Bürger: nach 5 Jahren Wohnsitz/Arbeit.</p>
+      <div class="detail">
+        <ul>
+          <li><strong>Asylsuchende:</strong> gar nicht</li>
+          <li><strong>Subsidiär Schutzberechtigte:</strong> nur Kernleistungen (dürfen arbeiten, aber befristet auf 1 Jahr)</li>
+          <li><strong>Asylberechtigte:</strong> ab Moment der Anerkennung</li>
+          <li><strong>Drittstaatsbürger:</strong> wenn seit über 5 Jahren in Österreich</li>
+          <li><strong>EU-Bürger:</strong> wenn seit 5 Jahren in Österreich wohnend/arbeitend</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Konjunkturzyklus</div>
+    <div class="card">
+      <div class="card-title">Die 4 Phasen</div>
+      <p class="short-text">Expansion (Aufschwung) → Boom (Hochkonjunktur) → Rezession (Abschwung) → Depression (Tiefphase). Periodisches Schwanken der wirtschaftlichen Aktivität. Gemessen am BIP.</p>
+      <div class="detail"><p>Der Konjunkturzyklus ist ein <strong>periodisches Schwanken der wirtschaftlichen Aktivität</strong> in einer Volkswirtschaft, gemessen am BIP (Bruttoinlandsprodukt).</p></div>
+    </div>
+    <table class="compare-table">
+      <thead><tr><th>Phase</th><th>Verbraucher</th><th>Unternehmen</th><th>Staat</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Expansion</strong></td><td>Preise, Löhne, Zinsen steigen leicht. Positiver Ausblick.</td><td>Hohe Nachfrage, hohe Profite.</td><td>Höhere Steuern, kann Schulden begleichen.</td></tr>
+        <tr><td><strong>Boom</strong></td><td>Alles steigt stärker. Negativer Ausblick (Überhitzung).</td><td>Sehr hohe Nachfrage, erhöhen Preise.</td><td>Noch höhere Steuereinnahmen.</td></tr>
+        <tr><td><strong>Rezession</strong></td><td>Preise, Löhne, Zinsen sinken.</td><td>Fahren Investitionen zurück, entlassen Personal.</td><td>Wichtige Rolle: verhindert durch Subventionen tieferen Absturz.</td></tr>
+        <tr><td><strong>Depression</strong></td><td>Preise sinken weiter, keine Privatkredite.</td><td>Viele Entlassungen, Insolvenzen.</td><td>Weniger Einnahmen, muss sich verschulden.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Konjunkturpolitik</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Angebotsorientiert</div>
+        <p class="short-text">Fördert Unternehmen. Bei Einbrüchen: Produktionssektor unterstützen. Steuersenkungen (Mehrwertsteuer), Auflagen beschränken (Umwelt).</p>
+        <div class="detail">
+          <p>Will Unternehmen fördern. Bei Konjunktureinbrüchen unterstützt sie den Produktionssektor. Instrumente: Steuersenkungen (z.B. Umsatz-, Mehrwertsteuer), Auflagen beschränken (z.B. Umweltauflagen).</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Nachfrageorientiert</div>
+        <p class="short-text">Fokus auf Konsumseite. Investitionsanreize, Infrastrukturprogramme, Steuer-/Abgabesenkungen, erhöhte Sozialleistungen, privaten Konsum fördern (z.B. Abwrackprämie).</p>
+        <div class="detail">
+          <p>Fokus auf der Konsumseite. Bei Konjunktureinbrüchen Investitionsanreize. Instrumente: Infrastrukturprogramme, Steuer-/Abgabesenkungen, erhöhte Sozialleistungen, privaten Konsum fördern (z.B. <strong>Abwrackprämie</strong> = Zahlungen für Schrottung eines Autos + Kauf eines E-Autos).</p>
+        </div>
+      </div>
+    </div>
+    <div class="highlight">
+      <strong>Stagflation:</strong> Gleichzeitig hohe Inflation + niedrige Löhne + hohe Arbeitslosigkeit. Phase schwachen Wirtschaftswachstums trotz steigender Preise. <strong>Aktuell Österreich:</strong> Flache Konjunktur, BIP-Wachstum ~0,6% bis 2026, steigende Inflation, geoökonomische Belastungen (Nahostkonflikt).
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Fallbeispiel: Frankreich &amp; Familienpolitik</div>
+    <div class="card">
+      <div class="card-title">Europaweit höchste Geburtenrate</div>
+      <p class="short-text">4% des BIP in familienspezifische Ausgaben (höchster Prozentsatz weltweit). Bezahlte Tagesmütter, Kindergeld, stabiles Mindesteinkommen. Frauen arbeiten wenige Wochen nach Geburt wieder Vollzeit.</p>
+      <div class="detail">
+        <p>Frankreich hat europaweit die höchste Geburtenrate, weil <strong>4% des BIP</strong> in familienspezifische Ausgaben fließen (der höchste Prozentsatz weltweit). Die Familienpolitik schreckt Frauen nicht davon ab, Kinder zu bekommen, sondern unterstützt sie: bezahlte Tagesmütter, Kindergeld, stabiles Mindesteinkommen. Die meisten Frauen arbeiten einige Wochen nach der Geburt wieder Vollzeit.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">Sozialstaat</span>
+      <span class="pill">Sozialversicherung</span>
+      <span class="pill">ÖGK</span>
+      <span class="pill">Lohnsteuerklassen</span>
+      <span class="pill">Konjunkturzyklus</span>
+      <span class="pill">Expansion</span>
+      <span class="pill">Boom</span>
+      <span class="pill">Rezession</span>
+      <span class="pill">Depression</span>
+      <span class="pill">Stagflation</span>
+      <span class="pill">Fiskalpolitik</span>
+      <span class="pill">Abwrackprämie</span>
+      <span class="pill">Braindrain</span>
+      <span class="pill">Notstandshilfe</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ T9: WIRTSCHAFTSSTANDORT ÖSTERREICH ═══════════════ -->
+<div id="t9" class="panel t9-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t9)">09</div>
+    <div>
+      <div class="topic-title" style="color:var(--t9)">Wirtschaftsstandort<br><span>Österreich</span></div>
+      <div class="topic-keywords">Harte &amp; weiche Faktoren · KMU · Hidden Champions · Wettbewerbsfähigkeit · Große Unternehmen</div>
+    </div>
+  </div>
+
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Standortfaktoren</div>
+    <div class="card">
+      <div class="card-title">Harte Standortfaktoren</div>
+      <p class="short-text">Lage (Herz Europas, Anbindung Ost/West/Nord/Süd). Infrastruktur (Autobahnen, ÖBB, Donau, Flughafen). Arbeitskräfte (duales System, hohe Produktivität). Politik (stabil, demokratisch, rechtssicher). Kaufkraft (hohes Einkommen).</p>
+      <div class="detail">
+        <ul>
+          <li><strong>Lage:</strong> Mitten in Europa → gute Erreichbarkeit vieler Märkte; verbunden zu Osteuropa, Italien, Deutschland; Knotenpunkt für internationalen Handel</li>
+          <li><strong>Infrastruktur:</strong> Autobahnen, Eisenbahnnetz (ÖBB), Flughäfen, Internet, Energieversorgung, Donau → schneller Transport, international vernetzt</li>
+          <li><strong>Arbeitskräfte:</strong> Gutes Bildungssystem, duale Ausbildung (Lehre + Betrieb) → hohe Produktivität. Problem: Fachkräftemangel in manchen Branchen.</li>
+          <li><strong>Politik:</strong> Sicher, demokratisch, rechtlich stabil</li>
+          <li><strong>Kaufkraft:</strong> Hohe Einkommen, hoher Lebensstandard → hohe Nachfrage</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Weiche Standortfaktoren</div>
+      <p class="short-text">Hohe Lebensqualität (Sicherheit, Gesundheit, saubere Umwelt, kulturelles Angebot). Umwelt: viel Natur, hohe Standards, erneuerbare Energie (Wasserkraft).</p>
+      <div class="detail">
+        <ul>
+          <li><strong>Lebensqualität:</strong> Sicherheit, Gesundheitsversorgung, saubere Umwelt, kulturelles Angebot</li>
+          <li><strong>Umwelt:</strong> Viel Natur, hohe Umweltstandards, erneuerbare Energie (vor allem Wasserkraft)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Österreich im internationalen Vergleich</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Vorteile ✓</div>
+        <ul>
+          <li>Export: Maschinen, Fahrzeuge, Stahl, Chemie, Holzprodukte (DE, IT, USA, CH)</li>
+          <li>Tourismus: Alpen, Wintersport, Kulturstädte</li>
+          <li>Dienstleistungen: Handel, Logistik</li>
+          <li>Innovative Unternehmen: Forschung, Technologie, Umwelttechnik</li>
+          <li>Zentrale Lage, gute Infrastruktur</li>
+          <li>Politische und wirtschaftliche Stabilität</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Nachteile ✗</div>
+        <ul>
+          <li>Hohe Lohnkosten → Ausland produziert günstiger</li>
+          <li>Kleine Wirtschaft (9 Mio. Einwohner) → exportabhängig</li>
+          <li>Fachkräftemangel in bestimmten Bereichen</li>
+          <li>Kleine Binnenwirtschaft</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Internationale Wettbewerbsfähigkeit</div>
+    <div class="card">
+      <div class="card-title">Definition &amp; Bedeutung</div>
+      <p class="short-text">Wie gut sich ein Land im Wirtschaftsraum behaupten kann. Hohe Wettbewerbsfähigkeit: Standort attraktiv, Unternehmen investieren, sichere Arbeitsplätze, Wirtschaftswachstum. Schwach: wenig Exporte, Unternehmen wandern ab.</p>
+      <div class="detail">
+        <p><strong>Hohe Wettbewerbsfähigkeit:</strong> Standort attraktiv für Unternehmen → Unternehmen produzieren und investieren → sichere Arbeitsplätze → Wirtschaftswachstum → Innovation, Forschung, Produktivität werden gefördert.</p>
+        <p><strong>Schwache Wettbewerbsfähigkeit:</strong> Geringe Exporte, Abwanderung von Unternehmen, Verlust von Arbeitsplätzen und Investitionen.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">KMU &amp; Hidden Champions</div>
+    <div class="card">
+      <div class="card-title">Kleine und Mittlere Unternehmen (KMU)</div>
+      <p class="short-text">~99% aller österreichischen Unternehmen sind KMU. Regional/national tätig, kleiner-mittlerer Umsatz. Bieten Arbeitsstellen und Lehrstellen, sorgen für regionale Wirtschaft, spezialisiert auf Nischenprodukte.</p>
+      <div class="detail">
+        <p>Die österreichische Unternehmensstruktur ist stark von KMU (Kleine und Mittlere Unternehmen) geprägt. <strong>Ca. 99% aller österreichischen Unternehmen sind KMU</strong> — regional oder national tätig, kleiner bis mittlerer Umsatz.</p>
+        <p><strong>Vorteile:</strong> Bieten Arbeitsstellen und Lehrstellen, sorgen für regionale Wirtschaft und Versorgung, spezialisiert auf Nischenprodukte, tragen zur nationalen Entwicklung bei.</p>
+        <p><strong>Nachteile:</strong> Weniger Kapital als große Konzerne, geringe internationale Reichweite, schwierige Finanzierung.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Hidden Champions</div>
+      <p class="short-text">KMU, die die populärsten in ihrem Gebiet sind. Stark exportorientiert, nicht berühmt aber erfolgreich. In Österreich vor allem im Industrie- und Technologiebereich.</p>
+      <div class="detail">
+        <p>Hidden Champions sind KMU, die in ihrer Nische weltmarktführend sind — stark exportorientiert, nicht berühmt aber sehr erfolgreich. In Österreich vor allem im <strong>Industrie- und Technologiebereich</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Große Österreichische Unternehmen</div>
+    <div class="card">
+      <div class="card-title">Wichtige Konzerne</div>
+      <div class="detail">
+        <table class="compare-table">
+          <thead><tr><th>Branche</th><th>Unternehmen</th></tr></thead>
+          <tbody>
+            <tr><td>Industrie &amp; Technologie</td><td>voestalpine, OMV AG, Benteler International, Borealis AG</td></tr>
+            <tr><td>Bau &amp; Infrastruktur</td><td>Strabag SE</td></tr>
+            <tr><td>Handel &amp; Konsum</td><td>REWE International, Porsche Holding, SPAR Österreich-Gruppe, Red Bull GmbH</td></tr>
+            <tr><td>Papier &amp; Verpackung</td><td>Mondi Group</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">Wirtschaftsstandort</span>
+      <span class="pill">Harte Standortfaktoren</span>
+      <span class="pill">Weiche Standortfaktoren</span>
+      <span class="pill">Duales Ausbildungssystem</span>
+      <span class="pill">Wettbewerbsfähigkeit</span>
+      <span class="pill">KMU</span>
+      <span class="pill">Hidden Champion</span>
+      <span class="pill">voestalpine</span>
+      <span class="pill">OMV</span>
+      <span class="pill">Exportabhängigkeit</span>
+      <span class="pill">Fachkräftemangel</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ T10: GRUNDLAGEN DER WIRTSCHAFT ═══════════════ -->
+<div id="t10" class="panel t10-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t10)">10</div>
+    <div>
+      <div class="topic-title" style="color:var(--t10)">Grundlagen der Wirtschaft &amp;<br><span>Konsumverhalten</span></div>
+      <div class="topic-keywords">Freihandel · Protektionismus · Handelshemmnisse · Gleichgewichtspreis · Angebot &amp; Nachfrage · Ölpreis</div>
+    </div>
+  </div>
+
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Wirtschaftsliberalismus vs. Protektionismus</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Wirtschaftsliberalismus (Freihandel)</div>
+        <p class="short-text">Adam Smith: „unsichtbare Hand" — Markt reguliert sich selbst durch Angebot &amp; Nachfrage. Keine Staatseingriffe. Im Außenhandel: keine Zölle, jedes Land spezialisiert sich auf das, was es am effizientesten herstellt (komparative Kostenvorteile).</p>
+        <div class="detail">
+          <p>Geht auf <strong>Adam Smith</strong> zurück (die „unsichtbare Hand"). Der Markt reguliert sich durch Angebot und Nachfrage am besten selbst. Staatseingriffe werden minimiert.</p>
+          <p>Im Außenhandel: Keine Zölle oder Handelsbarrieren. Jedes Land soll sich auf Güter mit <strong>komparativen Kostenvorteilen</strong> spezialisieren. Ergebnis: globaler Wohlstand steigt, Preise für Konsumenten sinken.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Protektionismus</div>
+        <p class="short-text">Staat schützt heimischen Markt vor ausländischer Konkurrenz (heimische Wirtschaft, Arbeitsplätze, Schlüsselindustrien). Folge: Importwaren werden teurer/knapper, Konsumenten weichen auf teurere heimische Produkte aus → Kaufkraft sinkt.</p>
+        <div class="detail">
+          <p>Der Staat schützt den heimischen Markt vor ausländischer Konkurrenz — für heimische Wirtschaft, Arbeitsplätze oder Schlüsselindustrien.</p>
+          <p><strong>Folgen für Konsumenten:</strong> Importwaren werden teurer oder knapper. Konsumenten weichen auf teurere/qualitativ andere heimische Produkte aus → <strong>Kaufkraft sinkt</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Handelshemmnisse</div>
+    <div class="card">
+      <div class="card-title">Tarifäre Handelshemmnisse</div>
+      <p class="short-text">Verteuern den Import direkt: Zölle (Steuer auf importierte Güter), Abschöpfungen (Ausgleichsabgaben), Exportsubventionen (staatliche Hilfe für heimische Exportunternehmen → verzerrt Wettbewerb).</p>
+      <div class="detail">
+        <ul>
+          <li><strong>Zölle:</strong> Steuern auf importierte Güter (z.B. Auto-Zölle)</li>
+          <li><strong>Abschöpfungen:</strong> Ausgleichsabgaben, um ausländische Preise an das (höhere) Inlandsniveau anzupassen</li>
+          <li><strong>Exportsubventionen:</strong> Staatliche Hilfe für heimische Unternehmen, damit sie im Ausland billiger anbieten können (verzerrt den Wettbewerb)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Nicht-tarifäre Handelshemmnisse</div>
+      <p class="short-text">Erschweren Import ohne direkten Zoll: Einfuhrquoten (Mengenbeschränkung), technische Standards (CE-Kennzeichnung), bürokratische Hürden, Local Content Rules (Pflicht zum Inlandsanteil).</p>
+      <div class="detail">
+        <ul>
+          <li><strong>Einfuhrquoten (Kontingente):</strong> Mengenmäßige Beschränkung der Importmenge</li>
+          <li><strong>Technische Standards &amp; Normen:</strong> z.B. CE-Kennzeichnung in der EU — ausländische Produzenten können diese oft nur schwer erfüllen</li>
+          <li><strong>Bürokratische Hürden:</strong> Komplizierte Zollabwicklungen, langwierige Genehmigungen</li>
+          <li><strong>Local Content Rules:</strong> Vorschrift, dass ein bestimmter Prozentsatz der Bauteile im Inland hergestellt werden muss</li>
+        </ul>
+      </div>
+    </div>
+    <div class="highlight">
+      <strong>Aktuelle Beispiele USA-Zollpolitik:</strong> 10% Sonderzoll auf viele EU-Produkte · 15% Zoll auf Autos aus der EU · 50% auf Stahl- und Aluminiumimporte · Drohung mit 25% Autozoll · Höhere Zölle auf Käse und andere Lebensmittel.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Preisbildung &amp; Gleichgewichtspreis</div>
+    <div class="card">
+      <div class="card-title">Der Gleichgewichtspreis</div>
+      <p class="short-text">Preis, bei dem nachgefragte Menge = angebotene Menge. Markt wird „geräumt" (kein Überschuss, keine unerfüllte Nachfrage). Angebotsüberhang → Preise sinken. Nachfrageüberhang → Preise steigen.</p>
+      <div class="detail">
+        <p>Der <strong>Gleichgewichtspreis</strong> ist der Preis, bei dem die nachgefragte Menge genau der angebotenen Menge entspricht. Der Markt wird „geräumt" (weder Überschuss noch unbefriedigte Kunden).</p>
+        <ul>
+          <li><strong>Angebotsüberhang</strong> (Preis über Gleichgewicht): Mehr produziert als Konsumenten kaufen wollen → Verkäufer senken Preise → Preis sinkt Richtung Gleichgewicht</li>
+          <li><strong>Nachfrageüberhang</strong> (Preis unter Gleichgewicht): Konsumenten wollen mehr als angeboten → Knappheit → Verkäufer erhöhen Preise → Preis steigt Richtung Gleichgewicht</li>
+        </ul>
+      </div>
+    </div>
+    <table class="compare-table">
+      <thead><tr><th>Einflussfaktoren Nachfrage</th><th>Einflussfaktoren Angebot</th></tr></thead>
+      <tbody>
+        <tr><td>Einkommen (mehr Gehalt = mehr Nachfrage)</td><td>Produktionskosten (höhere Löhne/Rohstoffe senken Angebot)</td></tr>
+        <tr><td>Bedürfnisse/Trends (Hype pusht Nachfrage)</td><td>Technologie (effizientere Maschinen erhöhen Angebot)</td></tr>
+        <tr><td>Preise anderer Güter (Kaffee teurer → Tee)</td><td>Externe Schocks (Ernteausfall, Streik, Krisen)</td></tr>
+        <tr><td>Zukunftserwartungen (Inflation → Vorratskäufe)</td><td>Zukunftserwartungen (Händler halten Ware zurück)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Ölpreis &amp; Nahostkonflikt</div>
+    <div class="card">
+      <div class="card-title">Warum reagiert Öl so sensibel?</div>
+      <p class="short-text">Naher Osten = riesiger Teil der Weltölreserven + kritische Handelsrouten (Straße von Hormus, Suezkanal). Konflikte → Förderausfälle / Seeweg-Blockaden → Angebotsverknappung. Historisch: Ölkrise 1973 (Jom-Kippur-Krieg), 1979 (Islamische Revolution).</p>
+      <div class="detail">
+        <p><strong>Geografische Konzentration:</strong> Naher Osten (Saudi-Arabien, Iran, Irak) beherbergt einen riesigen Teil der Weltölreserven. Kritische Handelsrouten: Straße von Hormus, Suezkanal.</p>
+        <p><strong>Angebotsverknappung:</strong> Konflikte → Förderausfälle oder Blockaden → Angst vor zu wenig Öl für den Weltmarkt → Preisanstieg. Historisch: <strong>Ölkrise 1973</strong> (Jom-Kippur-Krieg) und <strong>1979</strong> (Islamische Revolution).</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Auswirkungen auf das Konsumverhalten</div>
+      <p class="short-text">Öl = Basis für Logistik UND chemische Industrie. Steigender Ölpreis → Inflation (alles wird teurer), Wohlstandsverlust (mehr Geld für Heizung/Tanken), Konsumzurückhaltung (Menschen sparen mehr, schieben Käufe auf).</p>
+      <div class="detail">
+        <p>Öl ist nicht nur Benzin, sondern die Basis für Logistik (Transportkosten) und die chemische Industrie (Plastik, Düngemittel, Medikamente). Ein steigender Ölpreis führt zu:</p>
+        <ul>
+          <li><strong>Inflation:</strong> Produktion und Transport fast aller Güter werden teurer</li>
+          <li><strong>Wohlstandsverlust:</strong> Mehr Geld für Heizung und Tanken → weniger für Gastronomie, Elektronik, Urlaub</li>
+          <li><strong>Konsumzurückhaltung:</strong> Aus Unsicherheit mehr sparen, größere Anschaffungen (Auto, Hausrenovierung) aufschieben</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">Freihandel</span>
+      <span class="pill">Adam Smith</span>
+      <span class="pill">Unsichtbare Hand</span>
+      <span class="pill">Komparative Kostenvorteile</span>
+      <span class="pill">Protektionismus</span>
+      <span class="pill">Zoll</span>
+      <span class="pill">Einfuhrquote</span>
+      <span class="pill">CE-Kennzeichnung</span>
+      <span class="pill">Gleichgewichtspreis</span>
+      <span class="pill">Angebotsüberhang</span>
+      <span class="pill">Nachfrageüberhang</span>
+      <span class="pill">Ölkrise 1973</span>
+      <span class="pill">Straße von Hormus</span>
+      <span class="pill">Inflation</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ T11: GELD & NACHHALTIGE GELDANLAGEN ═══════════════ -->
+<div id="t11" class="panel t11-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t11)">11</div>
+    <div>
+      <div class="topic-title" style="color:var(--t11)">Geld &amp; nachhaltige<br><span>Geldanlagen</span></div>
+      <div class="topic-keywords">Magisches Dreieck · Aktien · ETF · Inflation · ESG · Nachhaltige Geldanlagen</div>
+    </div>
+  </div>
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Möglichkeiten der Geldanlage</div>
+    <div class="card">
+      <div class="card-title">Überblick: Anlageformen</div>
+      <p class="short-text">Sparkonto (sicher, wenig Zinsen) · Bausparvertrag (beliebt in AT) · Aktien (Unternehmensanteile) · ETFs (gebündelte Aktien) · Anleihen (Kredit an Staat/Firmen) · Gold/Rohstoffe (krisensicher) · Kryptowährungen (sehr riskant).</p>
+      <div class="detail">
+        <ul>
+          <li><strong>Sparkonto:</strong> Sicher, aber sehr wenig Zinsen</li>
+          <li><strong>Bausparvertrag:</strong> In Österreich beliebt, für langfristiges Sparen</li>
+          <li><strong>Aktien:</strong> Anteile an Unternehmen</li>
+          <li><strong>ETFs:</strong> Fonds, die viele Aktien bündeln (Risikostreuung)</li>
+          <li><strong>Anleihen:</strong> Man leiht Staaten (Staatsanleihen) oder Firmen Geld</li>
+          <li><strong>Gold und Rohstoffe:</strong> Krisensicher, stabil</li>
+          <li><strong>Kryptowährungen:</strong> Digitale Währungen (z.B. Bitcoin) – sehr riskant</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Beliebteste Geldanlagen in Österreich</div>
+      <p class="short-text">Sparbuch · Bausparvertrag · Lebensversicherung · Immobilien. Aktien & ETFs werden immer beliebter.</p>
+      <div class="detail">
+        <p>Österreicher:innen sparen traditionell lieber sicher. Klassiker: Sparbuch, Bausparvertrag, Lebensversicherung, Immobilien. Aktien und ETFs gewinnen jedoch zunehmend an Beliebtheit.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Das Magische Dreieck der Geldanlage</div>
+    <div class="highlight">
+      <strong>Sicherheit</strong> – Wie gering ist das Risiko?<br>
+      <strong>Rendite</strong> – Wie viel Gewinn kann man machen?<br>
+      <strong>Verfügbarkeit (Liquidität)</strong> – Wie schnell kommt man ans Geld?
+    </div>
+    <div class="highlight">
+      <strong>Merke:</strong> Man kann immer nur 2 der 3 Ziele gleichzeitig maximal erreichen. Hohe Sicherheit + hohe Rendite = geringe Verfügbarkeit (z.B. Immobilien). Hohe Rendite + hohe Verfügbarkeit = niedriges Sicherheitsniveau (z.B. Kryptos).
+    </div>
+    <table class="compare-table">
+      <thead><tr><th>Anlageform</th><th>Sicherheit</th><th>Rendite</th><th>Verfügbarkeit</th></tr></thead>
+      <tbody>
+        <tr><td>Sparkonto</td><td>⬆ Hoch</td><td>⬇ Sehr niedrig</td><td>⬆ Hoch</td></tr>
+        <tr><td>Bausparvertrag</td><td>⬆ Hoch</td><td>↔ Mittel</td><td>⬇ Niedrig</td></tr>
+        <tr><td>Aktien</td><td>⬇ Niedrig</td><td>⬆ Hoch</td><td>↔ Mittel</td></tr>
+        <tr><td>ETF</td><td>↔ Mittel</td><td>↔–⬆ Mittel-hoch</td><td>↔ Mittel</td></tr>
+        <tr><td>Gold</td><td>⬆ Hoch</td><td>↔ Mittel</td><td>↔ Mittel</td></tr>
+        <tr><td>Kryptowährungen</td><td>⬇ Sehr niedrig</td><td>⬆⬆ Sehr hoch (mögl.)</td><td>⬆ Hoch</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Aktien & ETFs im Detail</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Aktien</div>
+        <p class="short-text">Anteile an einem Unternehmen. Vorteile: hohe Gewinnchancen, Dividenden, Inflationsschutz. Nachteile: Kurse können stark fallen, Verlustrisiko.</p>
+        <div class="detail">
+          <p><strong>Vorteile:</strong> Hohe Gewinnchancen, Dividenden möglich, Schutz vor Inflation</p>
+          <p><strong>Nachteile:</strong> Kurse können stark fallen, Verlustrisiko</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">ETF (Exchange Traded Fund)</div>
+        <p class="short-text">Viele Aktien gebündelt → Risikostreuung. Günstiger als aktiv gemanagte Fonds, langfristig oft gute Gewinne. Aber: auch ETFs können an Wert verlieren.</p>
+        <div class="detail">
+          <p><strong>Vorteile:</strong> Günstiger als viele Fonds, breite Streuung, langfristig oft gute Gewinne</p>
+          <p><strong>Nachteile:</strong> Auch ETFs können an Wert verlieren, Gewinne nicht garantiert</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Inflation & Warum Investieren sinnvoll ist</div>
+    <div class="card">
+      <div class="card-title">Inflation & Deflation</div>
+      <p class="short-text">Inflation = Entwertung des Geldes → man kann sich weniger leisten. Deflation = Kaufkraft des Geldes steigt → allgemeiner Rückgang des Preisniveaus.</p>
+      <div class="detail">
+        <p><strong>Inflation:</strong> Das Preisniveau steigt allgemein → für denselben Geldbetrag bekommt man weniger. Hat man Geld nur auf dem Konto liegen, verliert es durch Inflation an Wert.</p>
+        <p><strong>Deflation:</strong> Das Preisniveau sinkt → die Kaufkraft des Geldes steigt. Kann zu wirtschaftlicher Stagnation führen (Konsument:innen warten auf weitere Preissenkungen).</p>
+        <p><strong>Warum investieren?</strong> Vermögen kann wachsen · Inflation wird ausgeglichen · man sorgt für die Zukunft vor</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Entscheidungsfaktoren beim Investieren</div>
+      <p class="short-text">Wie viel Risiko bin ich bereit einzugehen? Wie lange kann ich das Geld anlegen? Will ich nachhaltig investieren? Wie hoch soll der mögliche Gewinn sein?</p>
+      <div class="detail">
+        <ul>
+          <li>Wie viel Risiko möchte ich eingehen?</li>
+          <li>Möchte ich das Geld lange anlegen oder brauche ich es bald wieder?</li>
+          <li>Möchte ich nachhaltig investieren?</li>
+          <li>Wie hoch soll der mögliche Gewinn sein?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Nachhaltige Geldanlagen (ESG)</div>
+    <div class="card">
+      <div class="card-title">Was sind nachhaltige Geldanlagen?</div>
+      <p class="short-text">Geldanlagen, bei denen nicht nur der Gewinn zählt, sondern auch Umwelt, Unternehmensführung und soziale Aspekte. Bewertet nach ESG-Kriterien.</p>
+      <div class="detail">
+        <p>Nachhaltige Geldanlagen berücksichtigen neben dem Gewinn auch:</p>
+        <ul>
+          <li><strong>E</strong> – Environmental (Umwelt): z.B. CO₂-Emissionen, erneuerbare Energien</li>
+          <li><strong>S</strong> – Social (Soziales): z.B. faire Arbeitsbedingungen, Menschenrechte</li>
+          <li><strong>G</strong> – Governance (Unternehmensführung): z.B. Transparenz, keine Korruption</li>
+        </ul>
+        <p><strong>Beispiele:</strong> Aktien von Unternehmen mit erneuerbaren Energien · Nachhaltige ETFs & Fonds · Finanzierung von Umweltprojekten (Windparks etc.)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">Sparkonto</span><span class="pill">Bausparvertrag</span><span class="pill">Aktie</span><span class="pill">ETF</span><span class="pill">Anleihe</span><span class="pill">Dividende</span><span class="pill">Magisches Dreieck</span><span class="pill">Sicherheit</span><span class="pill">Rendite</span><span class="pill">Liquidität</span><span class="pill">Inflation</span><span class="pill">Deflation</span><span class="pill">ESG</span><span class="pill">Nachhaltige Geldanlage</span><span class="pill">Kryptowährung</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ T12: POLITISCHE & ÖKONOMISCHE SYSTEME ═══════════════ -->
+<div id="t12" class="panel t12-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t12)">12</div>
+    <div>
+      <div class="topic-title" style="color:var(--t12)">Politische &amp; ökonomische<br><span>Systeme im Vergleich</span></div>
+      <div class="topic-keywords">Marktwirtschaft · Planwirtschaft · Demokratie · Autokratie · BIP · HDI · Gini · Globalisierung</div>
+    </div>
+  </div>
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Wirtschaftssysteme im Vergleich</div>
+    <table class="compare-table">
+      <thead><tr><th>Merkmal</th><th>Freie Marktwirtschaft</th><th>Soziale Marktwirtschaft</th><th>Planwirtschaft</th></tr></thead>
+      <tbody>
+        <tr><td>Eigentum</td><td>Privat</td><td>Überwiegend privat</td><td>Staatlich</td></tr>
+        <tr><td>Steuerung</td><td>Markt</td><td>Markt + Staat</td><td>Staat (Pläne)</td></tr>
+        <tr><td>Preisbildung</td><td>Frei</td><td>Frei, teilw. reguliert</td><td>Staatlich</td></tr>
+        <tr><td>Wettbewerb</td><td>Stark</td><td>Reguliert</td><td>Kaum / keiner</td></tr>
+        <tr><td>Soziale Sicherheit</td><td>Gering</td><td>Hoch</td><td>Garantiert (theoretisch)</td></tr>
+        <tr><td>Innovation</td><td>Sehr hoch</td><td>Hoch</td><td>Gering</td></tr>
+        <tr><td>Beispielland</td><td>USA</td><td>Österreich</td><td>Nordkorea</td></tr>
+      </tbody>
+    </table>
+    <div class="thinkers">
+      <div class="thinker">
+        <div class="thinker-name">Adam Smith</div><span class="thinker-years">1723–1790</span>
+        <p>Begründer der klassischen Marktwirtschaft. „Wohlstand der Nationen" (1776) – beschrieb die „unsichtbare Hand des Marktes". Angebot und Nachfrage regeln den Markt ohne staatlichen Eingriff.</p>
+      </div>
+      <div class="thinker">
+        <div class="thinker-name">Karl Marx &amp; Friedrich Engels</div><span class="thinker-years">1818–1883 / 1820–1895</span>
+        <p>Kritisierten den Kapitalismus, entwickelten die Theorie des Kommunismus. „Das Kapital" (1867) prägte sozialistische und kommunistische Bewegungen weltweit.</p>
+      </div>
+      <div class="thinker">
+        <div class="thinker-name">Ludwig Erhard &amp; Alfred Müller-Armack</div><span class="thinker-years">Nachkriegszeit</span>
+        <p>Begründer der Sozialen Marktwirtschaft in Deutschland nach dem 2. Weltkrieg. Verbindung von freiem Markt mit staatlicher Sozialverantwortung.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Freie Marktwirtschaft</div>
+    <div class="card">
+      <div class="card-title">Definition &amp; Merkmale</div>
+      <p class="short-text">Angebot und Nachfrage bestimmen Preise, Mengen, Investitionen. Staatliche Eingriffe minimal. Privateigentum, Wettbewerb, freie Preisbildung.</p>
+      <div class="detail">
+        <p><strong>Merkmale:</strong> Privateigentum an Produktionsmitteln · Wettbewerb zwischen Unternehmen · freie Preisbildung durch Angebot und Nachfrage · Gewinnstreben als Motor · kaum staatliche Eingriffe</p>
+        <p><strong>Vorteile:</strong> Innovation und Effizienz · breite Produktauswahl · schnelle Reaktion auf Bedürfnisse</p>
+        <p><strong>Nachteile:</strong> Große Einkommensunterschiede · Monopolbildung möglich · Umweltschäden (externe Kosten nicht eingepreist) · soziale Härten</p>
+        <p><strong>Beispiel:</strong> USA (in Reinform existiert sie nirgendwo)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Planwirtschaft &amp; Soziale Marktwirtschaft</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Planwirtschaft (Zentralverwaltungswirtschaft)</div>
+        <p class="short-text">Staat legt zentral fest, was, wie viel und für wen produziert wird (Fünfjahrespläne). Staatseigentum, keine freie Preisbildung. Historisch: UdSSR, DDR. Heute: Nordkorea, Kuba.</p>
+        <div class="detail">
+          <p><strong>Vorteile:</strong> Kaum Arbeitslosigkeit (theoretisch) · gleichmäßige Verteilung von Grundgütern · staatliche Versorgung mit Gesundheit, Bildung, Wohnen</p>
+          <p><strong>Nachteile:</strong> Wenig Innovation, fehlende Anreize · Mangel an Konsumgütern · Misswirtschaft · geringe Eigenverantwortung</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Soziale Marktwirtschaft</div>
+        <p class="short-text">Mischsystem: freier Markt + staatliche Eingriffe für soziale Gerechtigkeit. Sozialleistungen, progressive Steuern, Sozialpartnerschaft. Beispiele: Österreich, Deutschland, Schweden.</p>
+        <div class="detail">
+          <p><strong>Merkmale:</strong> Freier Markt + Privateigentum als Grundlage · Staat sorgt für Wettbewerbsrahmen (Kartellrecht) · Sozialleistungen (Arbeitslosengeld, Pension, Krankenversicherung) · progressive Steuern</p>
+          <p><strong>Vorteile:</strong> Wohlstand mit sozialer Absicherung · geringere Ungleichheit · Stabilität in Krisen (z.B. Kurzarbeit COVID)</p>
+          <p><strong>Nachteile:</strong> Hohe Steuern und Abgaben · viel Bürokratie · Staatsverschuldungsgefahr</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Politische Systeme im Vergleich</div>
+    <table class="compare-table">
+      <thead><tr><th>Merkmal</th><th>Demokratie</th><th>Autokratie</th><th>Totalitarismus</th></tr></thead>
+      <tbody>
+        <tr><td>Wahlen</td><td>✓ Frei &amp; fair</td><td>≈ Manipuliert</td><td>✗ Keine echten</td></tr>
+        <tr><td>Gewaltenteilung</td><td>✓</td><td>✗</td><td>✗</td></tr>
+        <tr><td>Meinungsfreiheit</td><td>✓</td><td>≈ Eingeschränkt</td><td>✗</td></tr>
+        <tr><td>Opposition erlaubt</td><td>✓</td><td>✗</td><td>✗</td></tr>
+        <tr><td>Freie Presse</td><td>✓</td><td>≈ Kontrolliert</td><td>✗ Propaganda</td></tr>
+        <tr><td>Beispiele</td><td>Österreich, Schweden</td><td>Russland, Türkei, Ungarn</td><td>Nordkorea, NS-Deutschland</td></tr>
+      </tbody>
+    </table>
+    <div class="card">
+      <div class="card-title">Demokratie – Grundprinzipien</div>
+      <p class="short-text">„Herrschaft des Volkes". Freie, gleiche, geheime Wahlen · Gewaltenteilung (Legislative/Exekutive/Judikative) · Rechtsstaatlichkeit · Meinungs- und Pressefreiheit · Mehrparteiensystem.</p>
+      <div class="detail">
+        <p><strong>Formen:</strong> Parlamentarische Demokratie (AT, DE, GB) · Präsidentielle Demokratie (USA, Frankreich) · Direkte Demokratie (Schweiz)</p>
+        <p><strong>Stärken:</strong> Schutz individueller Freiheiten · friedlicher Machtwechsel · Korrekturmöglichkeit durch Wahl</p>
+        <p><strong>Schwächen:</strong> Langsame Entscheidungen · populistische Versuchungen · Lobbyismus</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Totalitarismus &amp; Diktatur</div>
+      <p class="short-text">Diktatur: Alle Macht bei einer Person/Gruppe. Totalitarismus: Staat will das gesamte Leben kontrollieren (Politik, Religion, Beruf, Freizeit). Ideologie als Staatsreligion.</p>
+      <div class="detail">
+        <p><strong>Merkmale:</strong> Absoluter Machtanspruch · Ideologie als Pflicht · keine Gewaltenteilung · Massenüberwachung, Geheimpolizei · Propaganda &amp; Personenkult · keine Opposition</p>
+        <p><strong>Historisch:</strong> NS-Deutschland (1933–45), Sowjetunion unter Stalin, Maos China</p>
+        <p><strong>Heute:</strong> Nordkorea (Kim-Dynastie)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Vergleichsindikatoren</div>
+    <div class="card">
+      <div class="card-title">BIP, HDI &amp; Gini-Koeffizient</div>
+      <p class="short-text">BIP = Wert aller produzierten Güter/Dienstleistungen. HDI = Wohlstandsmaß (Einkommen + Lebenserwartung + Bildung). Gini = Einkommensungleichheit (0 = gleich, 100 = ungleich).</p>
+      <div class="detail">
+        <p><strong>BIP pro Kopf (2023, ca.):</strong> Norwegen 88.000 $ · USA 85.000 $ · Österreich 56.000 $ · Deutschland 54.000 $ · China 13.000 $ · Nordkorea ~1.700 $</p>
+        <p><strong>HDI 2023:</strong> Norwegen 0,966 · Schweden 0,952 · Österreich 0,926 · China 0,788 · Nordkorea ~0,733</p>
+        <p><strong>Gini (Einkommensungleichheit):</strong> Schweden 29,3 · Norwegen 27,7 · Österreich 30,2 · Deutschland 31,7 · USA 41,5</p>
+        <p><strong>Demokratie-Index:</strong> 9–10: vollständige Demokratie · 7–9: unvollständig · 4–6: Hybridregime · 0–4: autoritär</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Länderprofile: 4 Quadranten</div>
+    <table class="compare-table">
+      <thead><tr><th>Typ</th><th>Wirtschaft</th><th>Politik</th><th>Beispiele</th></tr></thead>
+      <tbody>
+        <tr><td>Liberale Demokratie</td><td>Marktwirtschaft</td><td>Demokratie</td><td>USA, Großbritannien</td></tr>
+        <tr><td>Soziale Demokratie</td><td>Soziale Marktwirtschaft</td><td>Demokratie</td><td>Österreich, Schweden, Norwegen</td></tr>
+        <tr><td>Autoritärer Kapitalismus</td><td>Staatskapitalismus</td><td>Autokratie</td><td>China, Singapur, Russland</td></tr>
+        <tr><td>Sozialistische Diktatur</td><td>Planwirtschaft</td><td>Totalitarismus</td><td>Nordkorea, Kuba</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight">
+      <strong>Wichtige Erkenntnis:</strong> Wirtschaftlicher Erfolg ist nicht automatisch an Demokratie gebunden (siehe China). Demokratien sind aber langfristig stabiler und schützen Bürgerrechte besser.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">Marktwirtschaft</span><span class="pill">Planwirtschaft</span><span class="pill">Soziale Marktwirtschaft</span><span class="pill">Demokratie</span><span class="pill">Autokratie</span><span class="pill">Totalitarismus</span><span class="pill">Gewaltenteilung</span><span class="pill">BIP</span><span class="pill">HDI</span><span class="pill">Gini-Koeffizient</span><span class="pill">Staatskapitalismus</span><span class="pill">Sozialpartnerschaft</span><span class="pill">Adam Smith</span><span class="pill">Karl Marx</span><span class="pill">Demokratie-Rezession</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ T13: WASSER & SDG6 ═══════════════ -->
+<div id="t13" class="panel t13-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t13)">13</div>
+    <div>
+      <div class="topic-title" style="color:var(--t13)">Wasser &amp;<br><span>SDG 6</span></div>
+      <div class="topic-keywords">Aralsee · Süßwasser · Wassernutzung · SDG 6 · Sanitärversorgung · Wassermangel</div>
+    </div>
+  </div>
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Wasserverteilung auf der Erde</div>
+    <div class="card">
+      <div class="card-title">Süßwasser als knappe Ressource</div>
+      <p class="short-text">97% des Wassers = Salzwasser in Meeren. Nur ~3% Süßwasser. Davon der Großteil in Gletschern/Eis/Grundwasser – nur ein kleiner Anteil in Seen und Flüssen direkt nutzbar.</p>
+      <div class="detail">
+        <p><strong>Wasserverteilung:</strong></p>
+        <ul>
+          <li>~97% Salzwasser (Meere, Ozeane)</li>
+          <li>~3% Süßwasser – davon größter Teil in Gletschern, Eis oder als Grundwasser</li>
+          <li>Nur ein kleiner Anteil in Seen und Flüssen direkt nutzbar</li>
+        </ul>
+        <p>Sauberes Trinkwasser ist daher eine <strong>begrenzte Ressource</strong>.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Globale Wassernutzung</div>
+      <p class="short-text">~70% Landwirtschaft (Bewässerung) · ~20% Industrie (Produktion, Energie) · ~10% Haushalte (Trinken, Kochen, Duschen).</p>
+      <div class="detail">
+        <ul>
+          <li><strong>~70% Landwirtschaft:</strong> Bewässerung von Feldern</li>
+          <li><strong>~20% Industrie:</strong> Herstellung von Produkten, Energiegewinnung</li>
+          <li><strong>~10% Haushalte:</strong> Trinken, Kochen, Duschen, Waschen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Fallbeispiel: Aralsee</div>
+    <div class="card">
+      <div class="card-title">Der Aralsee – Ökologische Katastrophe</div>
+      <p class="short-text">Früher einer der größten Seen der Welt, liegt zwischen Kasachstan und Usbekistan. Ab den 1960ern Flüsse für Baumwollanbau umgeleitet. Heute gilt er als eine der größten menschengemachten Öko-Katastrophen.</p>
+      <div class="detail">
+        <p><strong>Verlauf:</strong> Ab den 1960er Jahren wurden die Zuflüsse (Amu-Darya, Syr-Darya) für die sowjetische Landwirtschaft (Baumwollanbau) umgeleitet. Der See schrumpfte dramatisch.</p>
+        <p><strong>Folgen:</strong></p>
+        <ul>
+          <li>Salzgehalt stieg → Fische starben → Fischerei brach zusammen</li>
+          <li>Staubstürme mit Salz und Pestiziden aus dem Trockenboden</li>
+          <li>Gesundheitsprobleme der Bevölkerung</li>
+          <li>Wirtschaftliche Schwierigkeiten</li>
+          <li>Klimaveränderungen in der Region</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Probleme &amp; SDG 6</div>
+    <div class="card">
+      <div class="card-title">Wassermangel &amp; Wasserverschmutzung</div>
+      <p class="short-text">Ursachen: hoher Verbrauch, Dürren durch Klimawandel, Verschmutzung. Folge: Nicht alle Menschen haben Zugang zu sauberem Trinkwasser → Krankheiten, Konflikte.</p>
+      <div class="detail">
+        <p><strong>Ursachen des Wassermangels:</strong> Zu viel Verbrauch · Dürren durch Klimawandel · Verschmutzung durch Industrie und Landwirtschaft</p>
+        <p><strong>Folgen:</strong> Krankheiten durch verschmutztes Wasser · kein Zugang zu sauberem Trinkwasser für viele Menschen weltweit · soziale und politische Konflikte</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">SDG 6 – Sauberes Wasser und Sanitärversorgung</div>
+      <p class="short-text">UN-Nachhaltigkeitsziel Nr. 6: Jeder Mensch soll Zugang zu sauberem Trinkwasser, Toiletten und hygienischen Einrichtungen bekommen. Wasser soll nachhaltig genutzt werden.</p>
+      <div class="detail">
+        <p>Die <strong>Sustainable Development Goals (SDGs)</strong> der Vereinten Nationen beinhalten als Ziel 6: sauberes Wasser und Sanitärversorgung für alle.</p>
+        <p><strong>Sanitärversorgung</strong> = Toiletten, Abwassersysteme, Hygienemöglichkeiten. Eine gute Versorgung verbessert Gesundheit, verhindert Krankheiten und erhöht die Lebensqualität.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">Aralsee</span><span class="pill">Süßwasser</span><span class="pill">Salzwasser</span><span class="pill">SDG 6</span><span class="pill">Sanitärversorgung</span><span class="pill">Wassermangel</span><span class="pill">Wasserverschmutzung</span><span class="pill">Grundwasser</span><span class="pill">Bewässerungslandwirtschaft</span><span class="pill">Baumwollanbau</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ T14: GLOBALISIERUNG ═══════════════ -->
+<div id="t14" class="panel t14-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t14)">14</div>
+    <div>
+      <div class="topic-title" style="color:var(--t14)">Globalisierung, Handel<br><span>&amp; WTO</span></div>
+      <div class="topic-keywords">Globalisierung · Freier Handel · Protektionismus · Terms of Trade · WTO · Fair Trade · Kakao</div>
+    </div>
+  </div>
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Globalisierung</div>
+    <div class="card">
+      <div class="card-title">Definition &amp; Ursachen</div>
+      <p class="short-text">Weltweite Verflechtung von Wirtschaft, Politik, Kultur, Kommunikation und Umwelt. Ursachen: technischer Fortschritt, billigerer Transport, internationale Unternehmen, Liberalisierung des Welthandels.</p>
+      <div class="detail">
+        <p><strong>Ursachen:</strong></p>
+        <ul>
+          <li>Technischer Fortschritt (Internet, Digitalisierung, Containertransport)</li>
+          <li>Billigere Transportkosten</li>
+          <li>Internationale Unternehmen (Multinationale Konzerne)</li>
+          <li>Liberalisierung des Welthandels</li>
+          <li>Internationale Organisationen (WTO)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Positive Folgen</div>
+        <p class="short-text">Größere Produktauswahl · günstigere Preise · Wirtschaftswachstum · internationale Zusammenarbeit · Zugang zu neuen Märkten.</p>
+        <div class="detail"><ul><li>Größere Auswahl an Produkten</li><li>Günstigere Preise</li><li>Wirtschaftswachstum</li><li>Internationale Zusammenarbeit</li><li>Zugang zu neuen Märkten</li></ul></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Negative Folgen</div>
+        <p class="short-text">Ausbeutung von Arbeitskräften · Umweltprobleme · Abhängigkeit von Weltmärkten · Ungleichheit zwischen reich und arm · Verlust regionaler Produktion.</p>
+        <div class="detail"><ul><li>Ausbeutung von Arbeitskräften</li><li>Umweltprobleme</li><li>Abhängigkeit von Weltmärkten</li><li>Ungleichheit zwischen reichen und armen Staaten</li><li>Verlust regionaler Produktion</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Freier Handel vs. Protektionismus</div>
+    <table class="compare-table">
+      <thead><tr><th>Kriterium</th><th>Freier Handel</th><th>Protektionismus</th></tr></thead>
+      <tbody>
+        <tr><td>Märkte</td><td>Offen</td><td>Geschützt</td></tr>
+        <tr><td>Preise</td><td>Niedrig</td><td>Oft höher</td></tr>
+        <tr><td>Wettbewerb</td><td>International</td><td>Schutz heimischer Betriebe</td></tr>
+        <tr><td>Auswahl</td><td>Mehr</td><td>Weniger</td></tr>
+        <tr><td>Instrumente</td><td>Handelsliberalisierung</td><td>Zölle, Quoten, Subventionen</td></tr>
+        <tr><td>Beispiel</td><td>EU-Binnenmarkt</td><td>EU-Agrarpolitik (teilweise)</td></tr>
+      </tbody>
+    </table>
+    <div class="card">
+      <div class="card-title">Protektionismus – Ziele &amp; Kritik</div>
+      <p class="short-text">Staatlicher Schutz der eigenen Wirtschaft vor ausländischer Konkurrenz. Ziele: Schutz heimischer Jobs, strategische Branchen sichern. Nachteil: höhere Preise, weniger Wettbewerb, Handelskonflikte.</p>
+      <div class="detail">
+        <p><strong>Instrumente:</strong> Zölle auf Importwaren · Importquoten · Staatliche Subventionen · Technische Handelshemmnisse</p>
+        <p><strong>Ziele:</strong> Schutz heimischer Arbeitsplätze · Unterstützung junger Industrien · nationale Versorgungssicherheit</p>
+        <p><strong>Nachteile:</strong> Höhere Preise für Konsument:innen · weniger Wettbewerb · Gefahr von Handelskonflikten · geringere Effizienz</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Terms of Trade (ToT)</div>
+    <div class="card">
+      <div class="card-title">Definition &amp; Bedeutung</div>
+      <p class="short-text">Austauschverhältnis zwischen Export- und Importpreisen. Steigen Exportpreise stärker = Verbesserung. Steigen Importpreise stärker = Verschlechterung. Zeigt, wie viel ein Land für seine Exporte einhandeln kann.</p>
+      <div class="detail">
+        <p><strong>Formel:</strong></p>
+        <ul>
+          <li>Exportpreise steigen stärker als Importpreise → <strong>Verbesserung</strong> der ToT</li>
+          <li>Importpreise steigen stärker → <strong>Verschlechterung</strong> der ToT</li>
+        </ul>
+        <p><strong>Konsequenzen guter ToT:</strong> Land kann mehr importieren, höherer Wohlstand</p>
+        <p><strong>Konsequenzen schlechter ToT:</strong> Weniger Kaufkraft, wirtschaftliche Probleme</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Fallbeispiel: Kakaohandel</div>
+      <p class="short-text">Entwicklungsländer (Côte d'Ivoire, Ghana) exportieren Rohkakao. Gewinne entstehen erst bei Verarbeitung, Verpackung, Markenverkauf – diese bleiben oft in Industriestaaten.</p>
+      <div class="detail">
+        <p><strong>Problem:</strong> Rohkakaopreise schwanken stark und sind oft niedrig. Entwicklungsländer müssen teure Industriegüter importieren.</p>
+        <p><strong>Folgen:</strong> Geringe Einnahmen · Abhängigkeit vom Rohstoffexport · Armut trotz wichtiger Rohstoffe · Kinderarbeit · niedrige Löhne</p>
+        <p><strong>Lösungsansätze:</strong> Fair Trade (garantierte Mindestpreise) · höhere lokale Verarbeitung (Kakao → Schokolade) · stabile Mindestpreise · nachhaltiger Handel</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">WTO – World Trade Organization</div>
+    <div class="card">
+      <div class="card-title">Aufgaben &amp; Kritik</div>
+      <p class="short-text">Gegründet 1995, Sitz in Genf. Fördert freien Handel, baut Handelshemmnisse ab, schlichtet Streitfälle, überwacht Handelsabkommen.</p>
+      <div class="detail">
+        <p><strong>Ziele:</strong> Förderung des freien Handels · Abbau von Handelshemmnissen · Schlichtung von Handelsstreitigkeiten · internationale Handelsregeln setzen</p>
+        <p><strong>Aufgaben:</strong> Handelsabkommen überwachen · Streitfälle lösen (vermitteln) · Verhandlungen über neue Regeln/Zollsenkungen organisieren</p>
+        <p><strong>Kritik:</strong> Industrieländer haben mehr Einfluss · Entwicklungsländer benachteiligt · Umwelt- und Sozialstandards teilweise zu schwach · Förderung multinationaler Konzerne</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Strategien für den Globalen Süden</div>
+      <p class="short-text">Um unabhängiger zu werden: Höhere Wertschöpfung im eigenen Land · Diversifizierung der Wirtschaft · regionale Zusammenarbeit stärken · Bildung &amp; Technologietransfer · faire Handelsbedingungen.</p>
+      <div class="detail">
+        <ul>
+          <li><strong>Höhere Wertschöpfung:</strong> Rohstoffe selbst verarbeiten (Kakao → Schokolade)</li>
+          <li><strong>Diversifizierung:</strong> Neue Wirtschaftssektoren aufbauen (IT, Tourismus, Industrie)</li>
+          <li><strong>Regionale Zusammenarbeit:</strong> z.B. African Continental Free Trade Area</li>
+          <li><strong>Bildung &amp; Technologietransfer:</strong> Eigene Innovationszentren, Fachkräfte</li>
+          <li><strong>Faire Handelsbedingungen:</strong> Abbau von Agrarsubventionen in Industrieländern</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">Globalisierung</span><span class="pill">Freier Handel</span><span class="pill">Protektionismus</span><span class="pill">Zoll</span><span class="pill">Importquote</span><span class="pill">Terms of Trade</span><span class="pill">Kakaohandel</span><span class="pill">Fair Trade</span><span class="pill">WTO</span><span class="pill">Entwicklungsland</span><span class="pill">Wertschöpfung</span><span class="pill">Diversifizierung</span><span class="pill">Multilateraler Handel</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ T15: LANDSCHAFTSENTWICKLUNG ═══════════════ -->
+<div id="t15" class="panel t15-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t15)">15</div>
+    <div>
+      <div class="topic-title" style="color:var(--t15)">Landschaftsentwicklung durch<br><span>endogene &amp; exogene Kräfte</span></div>
+      <div class="topic-keywords">Plattentektonik · Vulkanismus · Erdbeben · Verwitterung · Erosion · Talformen · Klimawandel</div>
+    </div>
+  </div>
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Endogene Kräfte (aus dem Erdinneren)</div>
+    <div class="card">
+      <div class="card-title">Plattentektonik</div>
+      <p class="short-text">Die Lithosphäre ist in mehrere Platten unterteilt, die sich langsam bewegen. 3 Arten: divergierend (auseinander), konvergierend (aufeinander zu), konservativ (aneinander vorbei).</p>
+      <div class="detail">
+        <p><strong>Aufbau der Erde:</strong> Erdkruste → Erdmantel → Erdkern. Die Hitze im Inneren erzeugt Konvektionsströme → Plattenbewegungen.</p>
+        <table class="compare-table">
+          <thead><tr><th>Bewegung</th><th>Was passiert?</th><th>Folgen</th></tr></thead>
+          <tbody>
+            <tr><td>Divergierend</td><td>Platten gehen auseinander</td><td>Neue Erdkruste, Vulkane</td></tr>
+            <tr><td>Konvergierend</td><td>Platten stoßen zusammen</td><td>Gebirge, Erdbeben, Tiefseegräben</td></tr>
+            <tr><td>Konservativ</td><td>Platten gleiten vorbei</td><td>Erdbeben (z.B. San Andreas)</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Wichtige Platten:</strong> Eurasische, Afrikanische, Pazifische, Nordamerikanische, Südamerikanische</p>
+        <p><strong>Alpen:</strong> Entstanden durch Kollision der Afrikanischen und Eurasischen Platte</p>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Vulkanismus</div>
+        <p class="short-text">Magma gelangt an die Erdoberfläche. Arten: Schildvulkan (flach, dünnflüssig, ruhig – Hawaii) · Schichtvulkan (steil, explosiv – Vesuv) · Spaltenvulkan (lange Erdspalten).</p>
+        <div class="detail">
+          <p><strong>Aufbau:</strong> Magmakammer → Schlot → Krater. Austretende Lava, Aschewolken, pyroklastische Ströme.</p>
+          <p><strong>Positive Folgen:</strong> Fruchtbare Böden · Tourismus · Geothermie</p>
+          <p><strong>Negative Folgen:</strong> Zerstörung · giftige Gase · Ascheregen</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Erdbeben</div>
+        <p class="short-text">Plötzliche Erschütterung der Erdoberfläche. Hypozentrum = Entstehungsort im Inneren. Epizentrum = Punkt an der Oberfläche darüber. Folgen: Gebäudeschäden, Tsunamis, wirtschaftliche Schäden.</p>
+        <div class="detail">
+          <p><strong>Hypozentrum:</strong> Punkt im Erdinneren, an dem das Erdbeben entsteht</p>
+          <p><strong>Epizentrum:</strong> Punkt an der Oberfläche direkt über dem Hypozentrum – wo das Beben meist am stärksten spürbar ist</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Exogene Kräfte (von außen)</div>
+    <div class="card">
+      <div class="card-title">Verwitterung</div>
+      <p class="short-text">Zerstörung von Gestein an Ort und Stelle. 3 Arten: physikalisch (Frost, Temperatur, Salz), chemisch (Lösung, Kohlensäure, Oxidation), biologisch (Pflanzenwurzeln).</p>
+      <div class="detail">
+        <p><strong>Physikalische Verwitterung:</strong> Frostverwitterung (Wasser gefriert in Spalten) · Temperaturverwitterung (Ausdehnung durch Hitze/Kälte) · Salzverwitterung (Salzkristalle sprengen Gestein)</p>
+        <p><strong>Chemische Verwitterung:</strong> Lösungsverwitterung · Kohlensäureverwitterung (greift Kalkgestein an) · Oxidation (Rostbildung bei Eisen)</p>
+        <p><strong>Biologische Verwitterung:</strong> Pflanzenwurzeln dringen in Spalten ein und sprengen Gestein auseinander</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Erosion &amp; Ablagerung</div>
+      <p class="short-text">Erosion = Abtragung und Transport von Gestein. Arten: Flusserosion (Tiefen- und Seitenerosion), glaziale Erosion (Gletscher), Winderosion. Abgetragenes Material wird woanders abgelagert.</p>
+      <div class="detail">
+        <p><strong>Flusserosion:</strong> Tiefenerosion (Fluss gräbt sich ein → Kerbtal) · Seitenerosion (Fluss trägt seitlich ab → Sohlental)</p>
+        <p><strong>Glaziale Erosion:</strong> Gletscher schieben Gestein weg → U-förmige Trogtäler</p>
+        <p><strong>Winderosion:</strong> Wind transportiert Sand und Gesteinspartikel</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Landschaftsformen</div>
+    <div class="card">
+      <div class="card-title">Talformen im Vergleich</div>
+      <p class="short-text">Kerbtal (V-förmig, Tiefenerosion durch Fluss, Gebirge) · Sohlental (breit, Seitenerosion, flaches Gelände) · Trogtal (U-förmig, Gletschererosion, Alpen).</p>
+      <div class="detail">
+        <table class="compare-table">
+          <thead><tr><th>Talform</th><th>Form</th><th>Entstehung</th><th>Typisch für</th></tr></thead>
+          <tbody>
+            <tr><td>Kerbtal</td><td>V-förmig, steil</td><td>Tiefenerosion durch Fluss</td><td>Gebirge</td></tr>
+            <tr><td>Sohlental</td><td>Breite Talsohle</td><td>Seitliche Erosion des Flusses</td><td>Flacheres Gelände</td></tr>
+            <tr><td>Trogtal</td><td>U-förmig</td><td>Gletschererosion</td><td>Alpenregionen</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Küstenformen</div>
+      <p class="short-text">Steilküste (Felswände, Abtragung durch Brandung) · Ausgleichsküste/Flachküste (Sand, Ablagerung) · Deltaküste (Flussmündung, fruchtbar – z.B. Nil, Mississippi).</p>
+      <div class="detail">
+        <p><strong>Steilküste:</strong> Steile Felswände direkt am Meer, entsteht durch starke Brandung und Abtragung</p>
+        <p><strong>Ausgleichsküste:</strong> Flache Küste mit Sandstränden, Buchten werden aufgefüllt</p>
+        <p><strong>Deltaküste:</strong> Entsteht an Flussmündungen, viele Flussarme, fruchtbare Böden (Nildelta, Mississippi-Delta)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Wetter, Klima &amp; Klimawandel</div>
+    <div class="card">
+      <div class="card-title">Wetter vs. Klima</div>
+      <p class="short-text">Wetter = augenblicklicher Zustand der Atmosphäre an einem Ort zu einem Zeitpunkt. Klima = langfristiger Durchschnitt über mindestens 30 Jahre.</p>
+      <div class="detail">
+        <p><strong>Klimazonen:</strong> Tropen · Subtropen · Gemäßigte Zone · Polarzone</p>
+        <p><strong>Klimawandel – Ursachen:</strong> CO₂-Ausstoß · Industrie · Verkehr · Abholzung</p>
+        <p><strong>Klimawandel – Folgen:</strong> Gletscherschmelze · Meeresspiegelanstieg · Extremwetter · Verlust von Lebensräumen</p>
+        <p><strong>Schutzmaßnahmen:</strong> Frühwarnsysteme · Schutzbauten · Aufforstung · nachhaltiger Tourismus</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Österreich &amp; die Alpen</div>
+      <p class="short-text">Die Alpen entstanden durch die Kollision der Afrikanischen und Eurasischen Platte. Naturgefahren in Österreich: Lawinen, Hochwasser, Muren, Felsstürze.</p>
+      <div class="detail">
+        <p>Menschen verändern Landschaften durch: Städtebau · Landwirtschaft · Straßenbau · Tourismus</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">Endogene Kräfte</span><span class="pill">Exogene Kräfte</span><span class="pill">Plattentektonik</span><span class="pill">Divergierend</span><span class="pill">Konvergierend</span><span class="pill">Vulkanismus</span><span class="pill">Schildvulkan</span><span class="pill">Schichtvulkan</span><span class="pill">Erdbeben</span><span class="pill">Epizentrum</span><span class="pill">Hypozentrum</span><span class="pill">Verwitterung</span><span class="pill">Erosion</span><span class="pill">Kerbtal</span><span class="pill">Trogtal</span><span class="pill">Sohlental</span><span class="pill">Deltaküste</span><span class="pill">Steilküste</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ T16: GLOBALE ÖKOLOGISCHE PROBLEME ═══════════════ -->
+<div id="t16" class="panel t16-theme">
+  <div class="topic-header">
+    <div class="topic-num" style="color:var(--t16)">16</div>
+    <div>
+      <div class="topic-title" style="color:var(--t16)">Globale ökologische<br><span>Probleme</span></div>
+      <div class="topic-keywords">Ökologischer Fußabdruck · Land Grabbing · Desertifikation · Palmöl · Baumwolle · Überfischung · Greenwashing</div>
+    </div>
+  </div>
+  <div class="sections-grid">
+
+  <div class="section">
+    <div class="section-title">Globalisierung &amp; Umwelt</div>
+    <div class="card">
+      <div class="card-title">Anthropogene Ursachen von Umweltproblemen</div>
+      <p class="short-text">Anthropogen = durch den Menschen verursacht. Globalisierung → höherer Ressourcenverbrauch, mehr Umweltbelastung, Klimawandel, Abholzung. Hauptverursacher: Industrie, Verkehr, Landwirtschaft, fossile Energieträger.</p>
+      <div class="detail">
+        <p><strong>Anthropogene Ursachen:</strong> Industrie · Verkehr · Abholzung · Massentierhaltung · fossile Energieträger</p>
+        <p><strong>Cleantech</strong> = „Saubere Technologien": Ziel ist weniger Energieverbrauch und weniger Umweltverschmutzung. Beispiele: Solarenergie, Windkraft, Elektroautos, Recyclingtechnologien</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Ökologischer Fußabdruck &amp; Rucksack</div>
+      <p class="short-text">Fußabdruck = Fläche, die ein Mensch zum Leben benötigt. Österreich Ø ~5,3 ha (ideal: ~1,7 ha). Ökologischer Rucksack = gesamter Ressourcenverbrauch eines Produkts (Herstellung → Transport → Nutzung → Entsorgung).</p>
+      <div class="detail">
+        <p><strong>Ökologischer Fußabdruck:</strong> Berücksichtigt Nahrung, Wohnen, Energie, Konsum, Verkehr. Menschen verbrauchen aktuell mehr Ressourcen, als die Erde langfristig bereitstellen kann.</p>
+        <p><strong>Ökologischer Rucksack:</strong> Gesamter Ressourcenverbrauch eines Produkts über seinen gesamten Lebenszyklus. Beispiel: Smartphones benötigen seltene Rohstoffe aus Bergbau mit hohen Umweltkosten.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Landverbrauch &amp; Land Grabbing</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Landverbrauch</div>
+        <p class="short-text">Immer mehr Fläche wird genutzt für Landwirtschaft, Straßen, Städte, Industrie. Folgen: Weniger Naturflächen, Bodenversiegelung, Verlust fruchtbarer Böden.</p>
+        <div class="detail"><ul><li>Weniger Naturflächen</li><li>Bodenversiegelung</li><li>Verlust fruchtbarer Böden</li></ul></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Land Grabbing</div>
+        <p class="short-text">Reiche Staaten oder Konzerne kaufen/pachten große Flächen in ärmeren Ländern für Lebensmittelproduktion, Biokraftstoffe, Rohstoffgewinnung. Folgen: Vertreibung, Monokulturen, Waldrodung, Wasserknappheit.</p>
+        <div class="detail">
+          <p><strong>Folgen:</strong> Vertreibung der lokalen Bevölkerung · Monokulturen · Waldrodung · Wasserknappheit · Umweltzerstörung</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Bodendegradation &amp; Desertifikation</div>
+    <div class="card">
+      <div class="card-title">Bodendegradation &amp; Desertifikation</div>
+      <p class="short-text">Bodendegradation = Verschlechterung des Bodens durch Übernutzung, Erosion, Pestizide, Abholzung. Desertifikation = Ausbreitung von Wüsten (Klimawandel, Überweidung, Wassermangel). Folgen: Hunger, Armut, Migration.</p>
+      <div class="detail">
+        <p><strong>Bodendegradation – Ursachen:</strong> Übernutzung · Erosion · Pestizide · Abholzung → Folgen: geringere Fruchtbarkeit, schlechtere Ernten</p>
+        <p><strong>Desertifikation – Ursachen:</strong> Klimawandel · Überweidung · falsche Landwirtschaft · Wassermangel → Folgen: Hunger, Armut, Migration</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Palmöl &amp; Baumwolle</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Palmöl</div>
+        <p class="short-text">Aus der Ölpalme, in Lebensmitteln, Kosmetik, Waschmitteln, Biodiesel. Hauptanbau: Indonesien, Malaysia. Problem: Regenwaldabholzung, Verlust der Artenvielfalt, Zerstörung von Torfmooren, hoher CO₂-Ausstoß, Kinderarbeit.</p>
+        <div class="detail">
+          <p><strong>Warum beliebt?</strong> Billig · hoher Ertrag · vielseitig einsetzbar</p>
+          <p><strong>Umweltprobleme:</strong> Regenwaldabholzung · Verlust Artenvielfalt · Zerstörung von Torfmooren · hoher CO₂-Ausstoß</p>
+          <p><strong>Soziale Probleme:</strong> Kinderarbeit · schlechte Arbeitsbedingungen · Vertreibung indigener Bevölkerung</p>
+          <p><strong>Lösungsansatz:</strong> RSPO-Siegel (nachhaltiges Palmöl) – aber Kontrollen oft unzureichend</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Baumwolle &amp; Monokulturen</div>
+        <p class="short-text">Baumwolle: hoher Wasserverbrauch (1 T-Shirt ≈ 2.700 L Wasser!), viele Pestizide, Umweltverschmutzung. Monokulturen: laugen Boden aus, weniger Artenvielfalt, mehr Pestizide nötig.</p>
+        <div class="detail">
+          <p><strong>Monokultur:</strong> Anbau nur einer Pflanzenart auf großen Flächen → Boden wird ausgelaugt, höherer Pestizideinsatz, weniger Artenvielfalt</p>
+          <p><strong>Subventionen-Problem:</strong> US-Bauern erhalten staatliche Unterstützung → Baumwolle wird billiger verkauft → Weltmarktpreis sinkt → Kleinbauern im Globalen Süden leiden</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Meere &amp; Süßwasser</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Ausbeutung der Meere</div>
+        <p class="short-text">Überfischung = mehr Fische gefangen als nachwachsen. Verschmutzung durch Ölunfälle, Plastikmüll, Chemikalien.</p>
+        <div class="detail"><p>Lösungen: Fangquoten, Meeresschutzgebiete, Aquakultur, Vermeidung von Plastikabfall</p></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Süßwasser wird knapp</div>
+        <p class="short-text">Ursachen: Bevölkerungswachstum, Klimawandel, intensive Landwirtschaft, Verschmutzung. Probleme: Wassermangel, Konflikte, Hunger, Krankheiten.</p>
+        <div class="detail"><p>Besonders betroffen: Regionen in Afrika, Naher Osten, Teile Asiens. Intensive Landwirtschaft ist der größte Verbraucher (~70% des globalen Wasserverbrauchs).</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Recycling, Greenwashing &amp; Nachhaltigkeit</div>
+    <div class="card">
+      <div class="card-title">Recycling &amp; Upcycling</div>
+      <p class="short-text">Recycling = Abfall wird wiederverwertet (Papier, Glas, Plastik). Upcycling = Alte Produkte kreativ weiterverwendet (Möbel aus Paletten, Taschen aus Jeans). Vorteile: weniger Müll, spart Ressourcen.</p>
+      <div class="detail"><ul><li>Weniger Müll</li><li>Spart Ressourcen</li><li>Nachhaltiger Konsum</li></ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Greenwashing</div>
+      <p class="short-text">Unternehmen geben sich umweltfreundlicher als sie sind. Beispiele: Werbung mit „nachhaltiger Mode" trotz Massenproduktion, unklare Umweltsiegel, keine Offenlegung schlechter Arbeitsbedingungen.</p>
+      <div class="detail">
+        <p><strong>Probleme:</strong> Konsument:innen werden getäuscht · tatsächliche Umweltprobleme bleiben bestehen · Vertrauen in echte Nachhaltigkeitsbemühungen wird untergraben</p>
+      </div>
+    </div>
+    <div class="highlight">
+      <strong>Nachhaltigkeit:</strong> Ressourcen so nutzen, dass auch zukünftige Generationen gut leben können. Das bedeutet ökologisches, soziales und wirtschaftliches Gleichgewicht.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Schlüsselbegriffe</div>
+    <div>
+      <span class="pill">Ökologischer Fußabdruck</span><span class="pill">Ökologischer Rucksack</span><span class="pill">Land Grabbing</span><span class="pill">Bodendegradation</span><span class="pill">Desertifikation</span><span class="pill">Monokultur</span><span class="pill">Palmöl</span><span class="pill">RSPO</span><span class="pill">Baumwolle</span><span class="pill">Überfischung</span><span class="pill">Greenwashing</span><span class="pill">Recycling</span><span class="pill">Upcycling</span><span class="pill">Cleantech</span><span class="pill">Nachhaltigkeit</span><span class="pill">Anthropogen</span>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<script>
+let currentMode = 'full';
+
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const idx = {t1:0,t2:1,t3:2,t4:3,t5:4,t6:5,t7:6,t8:7,t9:8,t10:9,t11:10,t12:11,t13:12,t14:13,t15:14,t16:15}[id];
+  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+}
+
+function setMode(mode) {
+  currentMode = mode;
+  document.body.classList.remove('short-mode');
+  if (mode === 'short') document.body.classList.add('short-mode');
+  document.querySelectorAll('.mode-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.mode === mode);
+  });
+}
+
+// ═══════════════ DONE SYSTEM ═══════════════
+const DONE_KEY = 'gw_done_items';
+function getDoneSet() { try { return new Set(JSON.parse(localStorage.getItem(DONE_KEY) || '[]')); } catch(e) { return new Set(); } }
+function saveDoneSet(set) { localStorage.setItem(DONE_KEY, JSON.stringify([...set])); }
+
+function initDoneSystem() {
+  let idx = 0;
+  document.querySelectorAll('.card, .highlight, .thinker').forEach(el => {
+    if (el.querySelector('.done-btn')) return;
+    const id = 'ditem-' + (idx++);
+    el.dataset.doneId = id;
+    const btn = document.createElement('button');
+    btn.className = 'done-btn';
+    btn.title = 'Als bekannt markieren';
+    btn.addEventListener('click', (e) => { e.stopPropagation(); toggleDone(el); });
+    el.appendChild(btn);
+  });
+  const done = getDoneSet();
+  document.querySelectorAll('[data-done-id]').forEach(el => {
+    if (done.has(el.dataset.doneId)) el.classList.add('is-done');
+  });
+  updateCounter();
+}
+
+function toggleDone(el) {
+  const id = el.dataset.doneId;
+  const done = getDoneSet();
+  if (done.has(id)) { done.delete(id); el.classList.remove('is-done'); }
+  else { done.add(id); el.classList.add('is-done'); }
+  saveDoneSet(done);
+  updateCounter();
+}
+
+function updateCounter() {
+  const total = document.querySelectorAll('[data-done-id]').length;
+  const doneCount = document.querySelectorAll('[data-done-id].is-done').length;
+  const counter = document.getElementById('done-counter');
+  if (counter) {
+    if (doneCount > 0) { counter.classList.add('visible'); counter.innerHTML = '<span>' + doneCount + '</span> / ' + total + ' abgehakt'; }
+    else { counter.classList.remove('visible'); }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => { initDoneSystem(); });
+
+// ═══════════════ RATING SYSTEM ═══════════════
+const RATING_KEY = 'gw_ratings';
+const RATING_LABELS = ['', 'Kaum bekannt', 'Unsicher', 'Mittelmäßig', 'Gut', 'Super drauf'];
+const RATING_COLORS = ['', '#ef5350', '#ff9800', '#ffeb3b', '#8bc34a', '#4caf50'];
+
+function getRatings() { try { return JSON.parse(localStorage.getItem(RATING_KEY) || '{}'); } catch(e) { return {}; } }
+function saveRatings(obj) { localStorage.setItem(RATING_KEY, JSON.stringify(obj)); }
+
+function initRatingSystem() {
+  document.querySelectorAll('.card, .highlight, .thinker').forEach(el => {
+    if (el.querySelector('.rating-bar')) return;
+    const id = el.dataset.doneId;
+    if (!id) return;
+    const bar = document.createElement('div');
+    bar.className = 'rating-bar';
+    for (let v = 1; v <= 5; v++) {
+      const dot = document.createElement('button');
+      dot.className = 'rating-dot';
+      dot.dataset.val = v;
+      dot.title = RATING_LABELS[v];
+      dot.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const current = parseInt(el.dataset.rating || '0');
+        setRating(el, current === v ? 0 : v);
+      });
+      bar.appendChild(dot);
+    }
+    el.appendChild(bar);
+  });
+  const ratings = getRatings();
+  document.querySelectorAll('[data-done-id]').forEach(el => {
+    const id = el.dataset.doneId;
+    if (ratings[id]) applyRating(el, ratings[id]);
+  });
+  updateRatingLegend();
+}
+
+function setRating(el, val) {
+  const id = el.dataset.doneId;
+  const ratings = getRatings();
+  if (val === 0) delete ratings[id]; else ratings[id] = val;
+  saveRatings(ratings);
+  applyRating(el, val);
+  updateAllTabScores();
+  updateRatingLegend();
+}
+
+function applyRating(el, val) {
+  el.dataset.rating = val || '';
+  if (!val) el.removeAttribute('data-rating');
+  el.querySelectorAll('.rating-dot').forEach(d => {
+    d.classList.toggle('active', parseInt(d.dataset.val) <= val);
+  });
+}
+
+function updateRatingLegend() {
+  const ratings = getRatings();
+  const hasAny = Object.keys(ratings).length > 0;
+  const legend = document.getElementById('rating-legend');
+  if (!legend) return;
+  if (hasAny) {
+    legend.classList.add('visible');
+    legend.innerHTML = [1,2,3,4,5].map(v =>
+      `<div class="rating-legend-row"><div class="rating-legend-dot" style="background:${RATING_COLORS[v]}"></div>${RATING_LABELS[v]}</div>`
+    ).join('');
+  } else { legend.classList.remove('visible'); }
+}
+
+document.addEventListener('DOMContentLoaded', () => { setTimeout(initRatingSystem, 50); });
+
+// ═══════════════ TAB SCORE ═══════════════
+const SCORE_EMOJIS = ['', '💀', '😰', '🤔', '😊', '⭐'];
+const SCORE_ANIM   = ['', 'score-danger', 'score-warning', 'score-ok', 'score-good', 'score-perfect'];
+const SCORE_COLORS = ['', '#ef5350', '#ff9800', '#ffeb3b', '#8bc34a', '#4caf50'];
+const TAB_NAMES = {t1:'Landschaftsöko.',t2:'Bevölkerung',t3:'Städte',t4:'EU',t5:'Produktionsgebiete',t6:'Österreich EU',t7:'Natur Österreich',t8:'Sozialpolitik',t9:'Wirtschaftsstandort',t10:'Grundlagen',t11:'Geld & Geldanlagen',t12:'Polit. & ökon. Systeme',t13:'Wasser & SDG6',t14:'Globalisierung',t15:'Landschaftsentwicklung',t16:'Glob. ökol. Probleme'};
+
+function getTabScore(id) {
+  const panel = document.getElementById(id);
+  if (!panel) return null;
+  const ratings = getRatings();
+  const items = panel.querySelectorAll('[data-done-id]');
+  if (!items.length) return null;
+  let sum = 0, count = 0;
+  items.forEach(el => { const r = ratings[el.dataset.doneId]; if (r) { sum += r; count++; } });
+  if (count === 0) return null;
+  return { avg: sum / count, count, total: items.length };
+}
+
+function updateAllTabScores() {
+  ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10','t11','t12','t13','t14','t15','t16'].forEach((id, idx) => {
+    const btn = document.querySelectorAll('.tab-btn')[idx];
+    if (!btn) return;
+    const old = btn.querySelector('.tab-score');
+    if (old) old.remove();
+    const result = getTabScore(id);
+    if (!result) return;
+    const level = Math.round(result.avg);
+    const badge = document.createElement('span');
+    badge.className = 'tab-score ' + SCORE_ANIM[level];
+    badge.textContent = SCORE_EMOJIS[level];
+    badge.title = (result.count + '/' + result.total + ' bewertet, Ø ' + result.avg.toFixed(1));
+    btn.appendChild(badge);
+  });
+}
+
+function openScoreOverview() {
+  const panel = document.getElementById('score-overview-panel');
+  const backdrop = document.getElementById('score-overview-backdrop');
+  if (!panel) return;
+  let gridHtml = '';
+  ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10','t11','t12','t13','t14','t15','t16'].forEach(id => {
+    const result = getTabScore(id);
+    const name = TAB_NAMES[id] || id;
+    const irrSet = getIrrelevantSet();
+    const panelEl = document.getElementById(id);
+    const panelItems = panelEl ? panelEl.querySelectorAll('[data-done-id]') : [];
+    const allIrr = panelItems.length > 0 && [...panelItems].every(el => irrSet.has(el.dataset.doneId));
+    const irrClass = allIrr ? ' ov-irrelevant' : '';
+    if (!result) {
+      gridHtml += `<div class="overview-item${irrClass}" style="border-color:rgba(255,255,255,0.06)">
+        <span class="ov-emoji">❔</span><span class="ov-name">${name}</span>
+        <span class="ov-score" style="color:var(--muted)">—</span></div>`;
+      return;
+    }
+    const level = Math.round(result.avg);
+    const pct = (result.avg / 5 * 100).toFixed(0);
+    gridHtml += `<div class="overview-item${irrClass}" style="border-color:${SCORE_COLORS[level]}">
+      <span class="ov-emoji">${SCORE_EMOJIS[level]}</span>
+      <span class="ov-name">${name}</span>
+      <div class="ov-bar-wrap"><div class="ov-bar" style="width:${pct}%;background:${SCORE_COLORS[level]}"></div></div>
+      <span class="ov-score" style="color:${SCORE_COLORS[level]}">${result.avg.toFixed(1)}</span></div>`;
+  });
+  panel.querySelector('.overview-grid').innerHTML = gridHtml;
+  panel.classList.add('open');
+  backdrop.classList.add('open');
+}
+
+function closeScoreOverview() {
+  document.getElementById('score-overview-panel')?.classList.remove('open');
+  document.getElementById('score-overview-backdrop')?.classList.remove('open');
+}
+
+const _origSetRating = setRating;
+setRating = function(el, val) { _origSetRating(el, val); updateAllTabScores(); };
+
+document.addEventListener('DOMContentLoaded', () => { setTimeout(updateAllTabScores, 100); });
+
+// ═══════════════ IRRELEVANT SYSTEM ═══════════════
+const IRRELEVANT_KEY = 'gw_irrelevant';
+function getIrrelevantSet() { try { return new Set(JSON.parse(localStorage.getItem(IRRELEVANT_KEY) || '[]')); } catch(e) { return new Set(); } }
+function saveIrrelevantSet(set) { localStorage.setItem(IRRELEVANT_KEY, JSON.stringify([...set])); }
+
+function initIrrelevantSystem() {
+  document.querySelectorAll('.card, .highlight, .thinker').forEach(el => {
+    if (el.querySelector('.irrelevant-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'irrelevant-btn';
+    btn.title = 'Nicht relevant';
+    btn.addEventListener('click', (e) => { e.stopPropagation(); toggleIrrelevant(el); });
+    el.appendChild(btn);
+  });
+  const irr = getIrrelevantSet();
+  document.querySelectorAll('[data-done-id]').forEach(el => {
+    if (irr.has(el.dataset.doneId)) el.classList.add('is-irrelevant');
+  });
+}
+
+function toggleIrrelevant(el) {
+  const id = el.dataset.doneId;
+  const irr = getIrrelevantSet();
+  if (irr.has(id)) { irr.delete(id); el.classList.remove('is-irrelevant'); }
+  else {
+    irr.add(id); el.classList.add('is-irrelevant');
+    el.classList.remove('is-done');
+    const done = getDoneSet(); done.delete(id); saveDoneSet(done);
+    updateCounter();
+  }
+  saveIrrelevantSet(irr);
+  updateAllTabScores();
+}
+
+document.addEventListener('DOMContentLoaded', () => { setTimeout(initIrrelevantSystem, 75); });
+
+// ═══════════════ TABLE ROW SYSTEM ═══════════════
+function initTableRows() {
+  let trIdx = 0;
+  document.querySelectorAll('.compare-table tbody tr').forEach(tr => {
+    if (tr.querySelector('.tr-controls')) return;
+    const id = 'trow-' + (trIdx++);
+    tr.dataset.doneId = id;
+    const ctrl = document.createElement('div');
+    ctrl.className = 'tr-controls';
+    for (let v = 1; v <= 5; v++) {
+      const dot = document.createElement('button');
+      dot.className = 'tr-rating-dot'; dot.dataset.val = v;
+      dot.title = ['','Kaum bekannt','Unsicher','Mittel','Gut','Top'][v];
+      dot.addEventListener('click', e => {
+        e.stopPropagation();
+        const cur = parseInt(tr.dataset.rating || '0');
+        setRowRating(tr, cur === v ? 0 : v);
+      });
+      ctrl.appendChild(dot);
+    }
+    const doneBtn = document.createElement('button');
+    doneBtn.className = 'tr-done-btn'; doneBtn.title = 'Als bekannt markieren';
+    doneBtn.addEventListener('click', e => { e.stopPropagation(); toggleRowDone(tr); });
+    ctrl.appendChild(doneBtn);
+    const irrBtn = document.createElement('button');
+    irrBtn.className = 'tr-irr-btn'; irrBtn.title = 'Nicht relevant';
+    irrBtn.addEventListener('click', e => { e.stopPropagation(); toggleRowIrrelevant(tr); });
+    ctrl.appendChild(irrBtn);
+    const lastTd = tr.querySelector('td:last-child');
+    if (lastTd) { lastTd.style.position = 'relative'; lastTd.appendChild(ctrl); }
+  });
+  const ratings = getRatings(); const done = getDoneSet(); const irr = getIrrelevantSet();
+  document.querySelectorAll('.compare-table tbody tr[data-done-id]').forEach(tr => {
+    const id = tr.dataset.doneId;
+    if (ratings[id]) applyRowRating(tr, ratings[id]);
+    if (done.has(id)) tr.classList.add('is-done');
+    if (irr.has(id)) tr.classList.add('is-irrelevant');
+  });
+}
+
+function setRowRating(tr, val) {
+  const id = tr.dataset.doneId; const ratings = getRatings();
+  if (val === 0) delete ratings[id]; else ratings[id] = val;
+  saveRatings(ratings); applyRowRating(tr, val);
+  updateAllTabScores(); updateRatingLegend();
+}
+function applyRowRating(tr, val) {
+  tr.dataset.rating = val || '';
+  if (!val) tr.removeAttribute('data-rating');
+  tr.querySelectorAll('.tr-rating-dot').forEach(d => { d.classList.toggle('active', parseInt(d.dataset.val) <= val); });
+}
+function toggleRowDone(tr) {
+  const id = tr.dataset.doneId; const done = getDoneSet();
+  if (done.has(id)) { done.delete(id); tr.classList.remove('is-done'); }
+  else { done.add(id); tr.classList.add('is-done'); tr.classList.remove('is-irrelevant'); const irr=getIrrelevantSet(); irr.delete(id); saveIrrelevantSet(irr); }
+  saveDoneSet(done); updateCounter();
+}
+function toggleRowIrrelevant(tr) {
+  const id = tr.dataset.doneId; const irr = getIrrelevantSet();
+  if (irr.has(id)) { irr.delete(id); tr.classList.remove('is-irrelevant'); }
+  else { irr.add(id); tr.classList.add('is-irrelevant'); tr.classList.remove('is-done'); const done=getDoneSet(); done.delete(id); saveDoneSet(done); updateCounter(); }
+  saveIrrelevantSet(irr); updateAllTabScores();
+}
+
+document.addEventListener('DOMContentLoaded', () => { setTimeout(initTableRows, 120); });
+
+// ═══════════════ TABLE SCROLL WRAPPERS (responsive) ═══════════════
+function wrapTables() {
+  document.querySelectorAll('.compare-table').forEach(tbl => {
+    if (tbl.parentElement.classList.contains('compare-table-wrap')) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'compare-table-wrap';
+    tbl.parentNode.insertBefore(wrap, tbl);
+    wrap.appendChild(tbl);
+  });
+}
+document.addEventListener('DOMContentLoaded', () => { setTimeout(wrapTables, 10); });
+</script>
+
+<div class="done-counter" id="done-counter"></div>
+<div class="rating-legend" id="rating-legend"></div>
+
+<div class="score-overview-backdrop" id="score-overview-backdrop" onclick="closeScoreOverview()"></div>
+<div class="score-overview-panel" id="score-overview-panel">
+  <h3>📊 Mein Wissensstand <button onclick="closeScoreOverview()">✕</button></h3>
+  <div class="overview-grid"></div>
+</div>
+</body>
+</html>
